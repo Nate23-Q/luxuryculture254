@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 255 255 255; /* #FFFFFF */
+    --foreground: 0 0 0; /* #000000 */
+    --border: 0 0 0; /* #000000 */
+    --input: 255 255 255; /* #FFFFFF */
+    --ring: 255 0 0; /* #FF0000 */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Button Components */
+  .btn-primary {
+    @apply bg-accent text-primary px-6 py-3 font-semibold rounded-lg transition-all duration-200 hover:bg-accent-600 focus:ring-2 focus:ring-accent focus:ring-offset-2 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-primary text-secondary border border-secondary px-6 py-3 font-semibold rounded-lg transition-all duration-200 hover:bg-secondary hover:text-primary focus:ring-2 focus:ring-secondary focus:ring-offset-2 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-accent border border-accent px-6 py-3 font-semibold rounded-lg transition-all duration-200 hover:bg-accent hover:text-primary focus:ring-2 focus:ring-accent focus:ring-offset-2 active:scale-95;
+  }
+
+  /* Input Components */
+  .input-primary {
+    @apply w-full px-4 py-3 border border-secondary rounded-lg bg-primary text-secondary placeholder-secondary-700 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200;
+  }
+
+  /* Card Components */
+  .card {
+    @apply bg-primary border border-secondary rounded-lg shadow-black transition-all duration-200 hover:shadow-accent;
+  }
+
+  .card-hover {
+    @apply card hover:scale-105 cursor-pointer;
+  }
+
+  /* Typography */
+  .heading-xl {
+    @apply text-4xl lg:text-6xl font-display font-bold text-secondary;
+  }
+
+  .heading-lg {
+    @apply text-2xl lg:text-4xl font-display font-bold text-secondary;
+  }
+
+  .heading-md {
+    @apply text-xl lg:text-2xl font-display font-semibold text-secondary;
+  }
+
+  .text-body {
+    @apply text-base text-secondary;
+  }
+
+  .text-small {
+    @apply text-sm text-secondary;
+  }
+
+  /* Layout */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-12 lg:py-20;
+  }
+
+  /* Product specific styles */
+  .product-badge {
+    @apply absolute top-2 left-2 bg-accent text-primary px-2 py-1 text-xs font-bold rounded;
+  }
+
+  .product-badge-sale {
+    @apply absolute top-2 right-2 bg-accent text-primary px-2 py-1 text-xs font-bold rounded;
+  }
+
+  .price-original {
+    @apply text-secondary line-through text-sm;
+  }
+
+  .price-sale {
+    @apply text-accent font-bold;
+  }
+
+  /* Animation utilities */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E60000;
+}
+
+/* Loading animations */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 1.5s ease-in-out infinite;
+  background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+  background-size: 800px 104px;
+}
+
+/* Focus styles for accessibility */
+.focus-visible:focus {
+  @apply ring-2 ring-accent ring-offset-2 outline-none;
+}
