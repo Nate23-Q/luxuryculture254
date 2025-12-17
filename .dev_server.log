@@ -393,3 +393,216 @@ Import trace for requested module:
 ./components/product/ProductGrid.tsx
 ./app/page.tsx
  ✓ Compiled in 1654ms (922 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 269ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 858ms (911 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /_next/static/chunks/main-app.js. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /_next/static/chunks/app-pages-internals.js. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /_next/static/chunks/main-app.js?v=1765948575690 404 in 1069ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 1069ms
+ ○ Compiling /product/[slug] ...
+ ✓ Compiled /product/[slug] in 961ms (923 modules)
+ ⨯ Error: Cannot find module './vendor-chunks/@paypal.js'
+Require stack:
+- /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+- /home/nathan/Documents/SHOP JR/.next/server/app/product/[slug]/page.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/dev/static-paths-worker.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1249:15)
+    at /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require-hook.js:55:36
+    at Function._load (node:internal/modules/cjs/loader:1075:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:219:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1340:12)
+    at mod.require (/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:138:16)
+    at __webpack_require__.f.require (/home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js:198:28)
+    at /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js:111:40 {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js',
+    '/home/nathan/Documents/SHOP JR/.next/server/app/product/[slug]/page.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ],
+  page: '/product/air-max-90'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 753ms (925 modules)
+ GET /product/air-max-90 500 in 2774ms
+ ⨯ Error: Cannot find module './vendor-chunks/@paypal.js'
+Require stack:
+- /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+- /home/nathan/Documents/SHOP JR/.next/server/app/product/[slug]/page.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/dev/static-paths-worker.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1249:15)
+    at /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require-hook.js:55:36
+    at Function._load (node:internal/modules/cjs/loader:1075:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:219:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1340:12)
+    at mod.require (/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:138:16)
+    at __webpack_require__.f.require (/home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js:198:28)
+    at /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js:111:40 {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js',
+    '/home/nathan/Documents/SHOP JR/.next/server/app/product/[slug]/page.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ],
+  page: '/product/air-jordan-1-retro-high-og'
+}
+ GET /product/air-jordan-1-retro-high-og 500 in 349ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/clsx.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/clsx' in /home/nathan/Documents/SHOP JR/.next/server for build dependencies doesn't lead to expected result '/home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/clsx.js', but to 'Error: Can't resolve './vendor-chunks/clsx' in '/home/nathan/Documents/SHOP JR/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/clsx (expected /home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/clsx.js)
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+<w>  at file /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/.next/server/pages/_error.js
+<w>  at file /home/nathan/Documents/SHOP JR/.next/server/pages/_error.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/tailwind-merge' in /home/nathan/Documents/SHOP JR/.next/server for build dependencies doesn't lead to expected result '/home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/tailwind-merge.js', but to 'Error: Can't resolve './vendor-chunks/tailwind-merge' in '/home/nathan/Documents/SHOP JR/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/tailwind-merge (expected /home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/tailwind-merge.js)
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+<w>  at file /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/.next/server/pages/_error.js
+<w>  at file /home/nathan/Documents/SHOP JR/.next/server/pages/_error.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/goober' in /home/nathan/Documents/SHOP JR/.next/server for build dependencies doesn't lead to expected result '/home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/goober.js', but to 'Error: Can't resolve './vendor-chunks/goober' in '/home/nathan/Documents/SHOP JR/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/goober (expected /home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/goober.js)
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+<w>  at file /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/.next/server/pages/_error.js
+<w>  at file /home/nathan/Documents/SHOP JR/.next/server/pages/_error.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/use-sync-external-store' in /home/nathan/Documents/SHOP JR/.next/server for build dependencies doesn't lead to expected result '/home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/use-sync-external-store.js', but to 'Error: Can't resolve './vendor-chunks/use-sync-external-store' in '/home/nathan/Documents/SHOP JR/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/use-sync-external-store (expected /home/nathan/Documents/SHOP JR/.next/server/vendor-chunks/use-sync-external-store.js)
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+<w>  at file /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/.next/server/pages/_error.js
+<w>  at file /home/nathan/Documents/SHOP JR/.next/server/pages/_error.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled /product/[slug] in 844ms (914 modules)
+ ✓ Compiled (922 modules)
+ ⨯ Error: Cannot find module './vendor-chunks/tailwind-merge.js'
+Require stack:
+- /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+- /home/nathan/Documents/SHOP JR/.next/server/app/product/[slug]/page.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/dev/static-paths-worker.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1249:15)
+    at /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require-hook.js:55:36
+    at Function._load (node:internal/modules/cjs/loader:1075:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:219:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1340:12)
+    at mod.require (/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:138:16)
+    at __webpack_require__.f.require (/home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js:198:28)
+    at /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js:111:40 {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js',
+    '/home/nathan/Documents/SHOP JR/.next/server/app/product/[slug]/page.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ],
+  page: '/product/air-jordan-1-retro-high-og'
+}
+ GET /product/air-jordan-1-retro-high-og 500 in 1335ms
+ ✓ Compiled in 1724ms (936 modules)
+ ⨯ Error: Cannot find module './vendor-chunks/tailwind-merge.js'
+Require stack:
+- /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js
+- /home/nathan/Documents/SHOP JR/.next/server/app/product/[slug]/page.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/dev/static-paths-worker.js
+- /home/nathan/Documents/SHOP JR/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1249:15)
+    at /home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require-hook.js:55:36
+    at Function._load (node:internal/modules/cjs/loader:1075:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:219:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1340:12)
+    at mod.require (/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:138:16)
+    at __webpack_require__.f.require (/home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js:198:28)
+    at /home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js:111:40 {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/nathan/Documents/SHOP JR/.next/server/webpack-runtime.js',
+    '/home/nathan/Documents/SHOP JR/.next/server/app/product/[slug]/page.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/require.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/load-components.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/build/utils.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/home/nathan/Documents/SHOP JR/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ],
+  page: '/product/air-jordan-1-retro-high-og'
+}
+ GET /product/air-jordan-1-retro-high-og 500 in 417ms
+[?25h

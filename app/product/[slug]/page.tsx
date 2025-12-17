@@ -6,37 +6,65 @@ import { useCartStore } from '@/lib/store/cart'
 import { Button } from '@/components/ui/Button'
 import { Minus, Plus, ShoppingCart, Heart, Share2 } from 'lucide-react'
 
-// Mock product data - replace with actual API call
+// Mock product data - matches homepage products
 const mockProducts = [
   {
     id: '1',
     name: 'Air Jordan 1 Retro High OG',
     slug: 'air-jordan-1-retro-high-og',
-    description: 'The legendary Air Jordan 1 returns with premium materials and classic colorway. This iconic silhouette features a leather upper, Air-Sole unit in the heel, and the timeless design that started it all.',
+    description: 'The legendary Air Jordan 1 returns with premium materials and classic colorway.',
     price: 15000,
     originalPrice: 18000,
     brand: 'Nike',
     category: 'footwear' as const,
+    gender: 'unisex' as const,
     sizes: ['7', '8', '9', '10', '11', '12'],
     colors: ['Black/Red', 'White/Black'],
-    images: ['https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=800&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop'],
     inStock: true,
     isOnSale: true,
+    isNewArrival: true,
     tags: ['retro', 'basketball', 'iconic'],
+    createdAt: '2024-01-01',
+    updatedAt: '2024-01-01'
   },
   {
     id: '2',
     name: 'Yeezy Boost 350 V2',
     slug: 'yeezy-boost-350-v2',
-    description: 'Kanye West\'s revolutionary sneaker with BOOST technology and Primeknit upper. Features responsive cushioning and a distinctive design.',
+    description: 'Kanye West\'s revolutionary sneaker with BOOST technology and Primeknit upper.',
     price: 12000,
     brand: 'Adidas',
     category: 'footwear' as const,
+    gender: 'unisex' as const,
     sizes: ['6', '7', '8', '9', '10', '11'],
     colors: ['Cream', 'Black', 'Beluga'],
-    images: ['https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=800&h=800&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=400&h=400&fit=crop'],
     inStock: true,
+    isOnSale: false,
+    isNewArrival: true,
     tags: ['boost', 'casual', 'modern'],
+    createdAt: '2024-01-01',
+    updatedAt: '2024-01-01'
+  },
+  {
+    id: '3',
+    name: 'Dunk Low "Panda"',
+    slug: 'dunk-low-panda',
+    description: 'Nike\'s classic basketball-inspired sneaker in the iconic black and white colorway.',
+    price: 8000,
+    originalPrice: 10000,
+    brand: 'Nike',
+    category: 'footwear' as const,
+    gender: 'unisex' as const,
+    sizes: ['5', '6', '7', '8', '9', '10', '11'],
+    colors: ['Black/White'],
+    images: ['https://images.unsplash.com/photo-1606813907291-76e2d7d5e1a4?w=400&h=400&fit=crop'],
+    inStock: true,
+    isOnSale: true,
+    tags: ['skate', 'casual', 'classic'],
+    createdAt: '2024-01-01',
+    updatedAt: '2024-01-01'
   }
 ]
 
