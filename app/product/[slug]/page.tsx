@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
+import Link from 'next/link'
 import { useCartStore } from '@/lib/store/cart'
 import { Button } from '@/components/ui/Button'
-import { Minus, Plus, ShoppingCart, Heart, Share2 } from 'lucide-react'
+import { Minus, Plus, ShoppingCart, Heart, Share2, ChevronRight } from 'lucide-react'
 
 // Mock product data - matches homepage products
 const mockProducts = [
@@ -111,6 +112,15 @@ export default function ProductDetailPage() {
   return (
     <div className="min-h-screen bg-primary section-padding">
       <div className="container-custom">
+        {/* Breadcrumb */}
+        <nav className="flex items-center space-x-2 text-sm mb-8">
+          <Link href="/" className="text-secondary-600 hover:text-accent">Home</Link>
+          <ChevronRight size={16} className="text-secondary-400" />
+          <Link href="/shop" className="text-secondary-600 hover:text-accent">Shop</Link>
+          <ChevronRight size={16} className="text-secondary-400" />
+          <span className="text-secondary-900">{product.name}</span>
+        </nav>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Images */}
           <div className="space-y-4">

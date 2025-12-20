@@ -5,6 +5,9 @@ import { HeroSection } from '@/components/home/HeroSection'
 import { FeaturedCollections } from '@/components/home/FeaturedCollections'
 import { CultureSection } from '@/components/home/CultureSection'
 import { NewsletterSignup } from '@/components/home/NewsletterSignup'
+import { BrandShowcase } from '@/components/home/BrandShowcase'
+import { GiftSection } from '@/components/home/GiftSection'
+import { MoreThanStore } from '@/components/home/MoreThanStore'
 
 
 // Mock data - replace with actual API calls
@@ -61,7 +64,7 @@ const mockNewDrops = [
     gender: 'unisex' as const,
     sizes: ['5', '6', '7', '8', '9', '10', '11'],
     colors: ['Black/White'],
-    images: ['https://images.unsplash.com/photo-1606813907291-76e2d7d5e1a4?w=400&h=400&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop'],
     inStock: true,
     isOnSale: true,
     tags: ['skate', 'casual', 'classic'],
@@ -289,6 +292,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Gift Section */}
+      <GiftSection />
+
+      {/* More Than Store Section */}
+      <MoreThanStore />
+
       {/* Sale Section */}
       <section className="section-padding bg-accent text-primary">
         <div className="container-custom">
@@ -309,11 +318,11 @@ export default function HomePage() {
       {/* Featured Collections */}
       <FeaturedCollections />
 
+      {/* Brand Showcase */}
+      <BrandShowcase />
+
       {/* Culture Section */}
       <CultureSection />
-
-      {/* Newsletter Signup */}
-      <NewsletterSignup />
     </div>
   )
 }

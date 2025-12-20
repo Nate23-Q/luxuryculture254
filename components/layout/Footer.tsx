@@ -92,7 +92,7 @@ export function Footer() {
             {/* Brand & Contact */}
             <div className="lg:col-span-1">
               <div className="bg-accent text-primary px-4 py-2 rounded-lg font-display font-bold text-xl inline-block mb-6">
-                SHOP JR
+                Luxury Culture
               </div>
               <p className="text-sm mb-6 opacity-90">
                 Your ultimate destination for premium sneakers and streetwear. 
@@ -101,7 +101,7 @@ export function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Mail size={16} />
-                  <span className="text-sm">support@shopjr.com</span>
+                  <span className="text-sm">support@LuxuryCulture.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone size={16} />
@@ -194,8 +194,8 @@ export function Footer() {
 
             {/* Copyright */}
             <div className="text-sm opacity-90 text-center md:text-right">
-              <p>&copy; {currentYear} SHOP JR. All rights reserved.</p>
-              <p className="mt-1">Made with ❤️ in Nairobi</p>
+              <p>&copy; {currentYear} Luxury Culture. All rights reserved.</p>
+              <p className="mt-1">Made By Nathan Krop: 0702605566 ❤️ in Nairobi</p>
             </div>
           </div>
         </div>

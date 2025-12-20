@@ -62,20 +62,178 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-accent ${
-                  pathname === item.href
-                    ? 'text-accent border-b-2 border-accent pb-1'
-                    : 'text-secondary'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+          <nav className="hidden lg:flex items-center">
+            <ul className="flex items-center space-x-8">
+              {navigation.map((item) => (
+                item.name.toLowerCase() === 'footwear' ? (
+                  <li key={item.name} className="relative group">
+                    <Link
+                      href={item.href}
+                      className={`text-sm font-medium transition-colors hover:text-accent ${
+                        pathname === item.href
+                          ? 'text-accent border-b-2 border-accent pb-1'
+                          : 'text-secondary'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+
+                    {/* Footwear Dropdown panel */}
+                    <div className="absolute left-0 mt-3 w-[820px] bg-primary border border-secondary shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+                      <div className="flex">
+                        <div className="w-1/3 border-r border-secondary p-6">
+                          <h4 className="text-xs font-semibold text-secondary-600 uppercase mb-3">Shop All Footwear</h4>
+                          <ul className="space-y-2 text-sm text-secondary">
+                            <li><Link href="/shop?brand=" className="hover:text-accent">Brand</Link></li>
+                            <li><Link href="/shop?gender=" className="hover:text-accent">Gender</Link></li>
+                            <li><Link href="/shop?category=footwear" className="hover:text-accent">Categories</Link></li>
+                            <li><Link href="/shop?bestseller=true" className="hover:text-accent">Bestseller</Link></li>
+                          </ul>
+                        </div>
+
+                        <div className="w-2/3 p-6 grid grid-cols-3 gap-4">
+                          <Link href="/shop?category=sneakers" className="block p-3 hover:bg-secondary-100 rounded">
+                            <p className="text-sm font-medium">Sneakers</p>
+                          </Link>
+                          <Link href="/shop?category=boots" className="block p-3 hover:bg-secondary-100 rounded">
+                            <p className="text-sm font-medium">Boots</p>
+                          </Link>
+                          <Link href="/shop?category=slipons" className="block p-3 hover:bg-secondary-100 rounded">
+                            <p className="text-sm font-medium">Slip-ons</p>
+                          </Link>
+                          <Link href="/shop?category=running" className="block p-3 hover:bg-secondary-100 rounded">
+                            <p className="text-sm font-medium">Running</p>
+                          </Link>
+                          <Link href="/shop?category=court" className="block p-3 hover:bg-secondary-100 rounded">
+                            <p className="text-sm font-medium">Court</p>
+                          </Link>
+                          <Link href="/shop?category=high-tops" className="block p-3 hover:bg-secondary-100 rounded">
+                            <p className="text-sm font-medium">High Tops</p>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ) : item.name.toLowerCase() === 'apparel' ? (
+                  <li key={item.name} className="relative group">
+                    <Link
+                      href={item.href}
+                      className={`text-sm font-medium transition-colors hover:text-accent ${
+                        pathname === item.href
+                          ? 'text-accent border-b-2 border-accent pb-1'
+                          : 'text-secondary'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+
+                    {/* Apparel Dropdown panel with image */}
+                    <div className="absolute left-0 mt-3 w-[920px] bg-primary border border-secondary shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+                      <div className="flex">
+                        <div className="w-2/3 p-6 grid grid-cols-3 gap-6">
+                          <div>
+                            <h4 className="text-xs font-semibold text-secondary-600 uppercase mb-3">Shop All Apparel</h4>
+                            <ul className="space-y-2 text-sm text-secondary">
+                              <li><Link href="/shop?brand=adidas" className="hover:text-accent">Adidas</Link></li>
+                              <li><Link href="/shop?brand=nike" className="hover:text-accent">Nike</Link></li>
+                              <li><Link href="/shop?brand=new-balance" className="hover:text-accent">New Balance</Link></li>
+                              <li><Link href="/shop?brand=puma" className="hover:text-accent">Puma</Link></li>
+                              <li><Link href="/shop?brand=restyle" className="hover:text-accent">Restyle</Link></li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-semibold text-secondary-600 uppercase mb-3">Gender</h4>
+                            <ul className="space-y-2 text-sm text-secondary">
+                              <li><Link href="/shop?gender=mens" className="hover:text-accent">Mens</Link></li>
+                              <li><Link href="/shop?gender=womens" className="hover:text-accent">Womens</Link></li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-semibold text-secondary-600 uppercase mb-3">Categories</h4>
+                            <ul className="space-y-2 text-sm text-secondary">
+                              <li><Link href="/shop?category=tops" className="hover:text-accent">Tops</Link></li>
+                              <li><Link href="/shop?category=bottoms" className="hover:text-accent">Bottoms</Link></li>
+                              <li><Link href="/shop?category=outerwear" className="hover:text-accent">Outerwear</Link></li>
+                              <li><Link href="/shop?category=accessories" className="hover:text-accent">Accessories</Link></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div className="w-1/3 p-6 flex items-center justify-center">
+                          <div className="relative w-full">
+                            <img src="/logo2.png" alt="Apparel" className="w-full h-64 object-cover rounded" />
+                            <Link href="/shop?category=apparel" className="absolute left-4 bottom-4 bg-primary border border-secondary px-3 py-2 rounded text-sm">Shop</Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ) : item.name.toLowerCase() === 'accessories' ? (
+                  <li key={item.name} className="relative group">
+                    <Link
+                      href={item.href}
+                      className={`text-sm font-medium transition-colors hover:text-accent ${
+                        pathname === item.href
+                          ? 'text-accent border-b-2 border-accent pb-1'
+                          : 'text-secondary'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+
+                    {/* Accessories Dropdown panel with image */}
+                    <div className="absolute left-0 mt-3 w-[920px] bg-primary border border-secondary shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+                      <div className="flex">
+                        <div className="w-2/3 p-6 grid grid-cols-3 gap-6">
+                          <div>
+                            <h4 className="text-xs font-semibold text-secondary-600 uppercase mb-3">Shop All Accessories</h4>
+                            <ul className="space-y-2 text-sm text-secondary">
+                              <li><Link href="/shop?category=accessories" className="hover:text-accent">All Accessories</Link></li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-semibold text-secondary-600 uppercase mb-3">Brand</h4>
+                            <ul className="space-y-2 text-sm text-secondary">
+                              <li><Link href="/shop?brand=puma" className="hover:text-accent">Puma</Link></li>
+                              <li><Link href="/shop?brand=nike" className="hover:text-accent">Nike</Link></li>
+                              <li><Link href="/shop?brand=restyle" className="hover:text-accent">Restyle</Link></li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-semibold text-secondary-600 uppercase mb-3">Categories</h4>
+                            <ul className="space-y-2 text-sm text-secondary">
+                              <li><Link href="/shop?category=accessories&sub=bags" className="hover:text-accent">Bags</Link></li>
+                              <li><Link href="/shop?category=accessories&sub=hats" className="hover:text-accent">Hats</Link></li>
+                              <li><Link href="/shop?category=accessories&sub=belts" className="hover:text-accent">Belts</Link></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div className="w-1/3 p-6 flex items-center justify-center">
+                          <div className="relative w-full">
+                            <img src="/logo.jpeg" alt="Accessories" className="w-full h-64 object-cover rounded" />
+                            <Link href="/shop?category=accessories" className="absolute left-4 bottom-4 bg-primary border border-secondary px-3 py-2 rounded text-sm">All Accessories</Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ) : (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className={`text-sm font-medium transition-colors hover:text-accent ${
+                        pathname === item.href
+                          ? 'text-accent border-b-2 border-accent pb-1'
+                          : 'text-secondary'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                )
+              ))}
+            </ul>
           </nav>
 
           {/* Search Bar */}

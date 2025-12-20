@@ -4,12 +4,13 @@ import './globals.css'
 import { Providers } from './providers'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { WhatsAppFloat } from '@/components/ui/WhatsAppFloat'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' })
 
 export const metadata: Metadata = {
-  title: 'SHOP JR - Premium Sneakers & Streetwear',
+  title: 'Luxury Culture - Premium Sneakers & Streetwear',
   description: 'Your ultimate destination for premium sneakers and streetwear. Shop the latest drops, bestsellers, and exclusive collections.',
   keywords: 'sneakers, streetwear, shoes, apparel, fashion, Kicks Kenya, premium footwear',
   authors: [{ name: 'SHOP JR Team' }],
@@ -44,6 +45,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <WhatsAppFloat />
           </div>
         </Providers>
       </body>
