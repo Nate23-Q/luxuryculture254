@@ -1,3 +1,5 @@
+'use client'
+
 import { CheckCircle, Package, Mail, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
@@ -102,30 +104,25 @@ export default function OrderSuccessPage() {
           {/* Action Buttons */}
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Button
-                onClick={() => window.location.href = '/shop'}
-                variant="outline"
-                className="w-full"
-              >
-                Continue Shopping
-              </Button>
+              <Link href="/shop">
+                <Button variant="outline" className="w-full">
+                  Continue Shopping
+                </Button>
+              </Link>
               
-              <Button
-                onClick={() => window.location.href = '/account/orders'}
-                variant="secondary"
-                className="w-full"
-              >
-                Track Order
-              </Button>
+              <Link href="/account/orders">
+                <Button variant="secondary" className="w-full">
+                  Track Order
+                </Button>
+              </Link>
             </div>
             
-            <Button
-              onClick={() => window.location.href = '/'}
-              className="w-full md:w-auto"
-            >
-              <ArrowRight className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
+            <Link href="/">
+              <Button className="w-full md:w-auto">
+                <ArrowRight className="mr-2 h-4 w-4" />
+                Back to Home
+              </Button>
+            </Link>
           </div>
 
           {/* Support Section */}
