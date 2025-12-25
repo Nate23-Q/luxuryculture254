@@ -52,12 +52,12 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3">
               <img
-                src="/logo2.png"
-                alt="Shop JR Logo"
+                src="/logo3.png"
+                alt="Luxury Culture Logo"
                 className="h-20 w-auto"
               />
-              <div className="bg-accent text-white px-3 py-2 rounded-lg">
-                <div className="text-xs font-bold tracking-widest uppercase">
+              <div className="bg-accent text-white px-6 py-3 rounded-xl shadow-lg">
+                <div className="text-sm font-bold tracking-widest uppercase">
                   Luxury Culture
                 </div>
               </div>

@@ -2,7 +2,7 @@
 
 export function WhatsAppFloat() {
   const phoneNumber = "+254745946585"
-  const message = "Hi! I'm interested in your products from SHOP JR"
+  const message = "Hi! I'm interested in your products from Luxury Culture"
   
   const handleWhatsAppClick = () => {
     const url = `https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`

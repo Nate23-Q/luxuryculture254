@@ -13,19 +13,19 @@ export const metadata: Metadata = {
   title: 'Luxury Culture - Premium Sneakers & Streetwear',
   description: 'Your ultimate destination for premium sneakers and streetwear. Shop the latest drops, bestsellers, and exclusive collections.',
   keywords: 'sneakers, streetwear, shoes, apparel, fashion, Kicks Kenya, premium footwear',
-  authors: [{ name: 'SHOP JR Team' }],
+  authors: [{ name: 'Luxury Culture Team' }],
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
-    title: 'SHOP JR - Premium Sneakers & Streetwear',
+    title: 'Luxury Culture - Premium Sneakers & Streetwear',
     description: 'Your ultimate destination for premium sneakers and streetwear.',
     type: 'website',
     locale: 'en_US',
-    siteName: 'SHOP JR',
+    siteName: 'Luxury Culture',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SHOP JR - Premium Sneakers & Streetwear',
+    title: 'Luxury Culture - Premium Sneakers & Streetwear',
     description: 'Your ultimate destination for premium sneakers and streetwear.',
   },
 }

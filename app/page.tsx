@@ -8,6 +8,7 @@ import { NewsletterSignup } from '@/components/home/NewsletterSignup'
 import { BrandShowcase } from '@/components/home/BrandShowcase'
 import { GiftSection } from '@/components/home/GiftSection'
 import { MoreThanStore } from '@/components/home/MoreThanStore'
+import { EndOfYearPromo } from '@/components/home/EndOfYearPromo'
 
 
 // Mock data - replace with actual API calls
@@ -255,6 +256,9 @@ const mockSaleProducts = [
 export default function HomePage() {
   return (
     <div className="min-h-screen">
+      {/* End of Year Promo Banner */}
+      <EndOfYearPromo />
+
       {/* Hero Section */}
       <HeroSection />
 

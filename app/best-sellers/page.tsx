@@ -80,35 +80,44 @@ export default function BestSellersPage() {
           </div>
 
           {/* Best Sellers Grid */}
-          {bestSellerProducts.length > 0 ? (
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-display font-bold flex items-center gap-2">
-                  <Crown className="h-6 w-6 text-accent" />
-                  Our Best Selling Collection
-                </h2>
-                <span className="text-secondary-600">
-                  {bestSellerProducts.length} premium styles
-                </span>
-              </div>
-              <ProductGrid products={bestSellerProducts} className="mb-12" />
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-display font-bold flex items-center gap-2">
+                <Crown className="h-6 w-6 text-accent" />
+                Our Best Selling Collection
+              </h2>
+              <span className="text-secondary-600">
+                Latest arrivals and trending styles
+              </span>
             </div>
-          ) : (
-            <div className="text-center py-16">
-              <Crown className="h-16 w-16 text-secondary-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-secondary mb-2">No Best Sellers Yet</h3>
-              <p className="text-secondary-600 mb-6">
-                Check back soon for our top-rated and most popular styles.
-              </p>
-              <Link 
-                href="/shop" 
-                className="inline-flex items-center gap-2 bg-accent text-primary px-6 py-3 rounded-lg font-semibold hover:bg-accent/90 transition-colors"
-              >
-                Browse All Products
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+            
+            {/* Image Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+              {[
+                'DSC02183.JPG', 'DSC02186.JPG', 'DSC02222.JPG', 'DSC02242.JPG',
+                'DSC02252.JPG', 'DSC02254.JPG', 'DSC02256.JPG', 'DSC02262.JPG',
+                'DSC02264.JPG', 'DSC02269.JPG', 'DSC02868.JPG', 'DSC02877.JPG',
+                'DSC02889.JPG', 'DSC02893.JPG', 'DSC02922.JPG', 'DSC02926.JPG',
+                'DSC02927.JPG', 'DSC02928.JPG', 'DSC02935.JPG', 'DSC02949.JPG',
+                'DSC02952.JPG', 'DSC02954.JPG', 'DSC02955.JPG', 'DSC02956.JPG',
+                'DSC02962.JPG', 'DSC02994_1.JPG', 'DSC02997_1.JPG', 'DSC03056_1.JPG'
+              ].map((image, index) => (
+                <div key={image} className="group cursor-pointer">
+                  <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
+                    <img
+                      src={`/Arrivals/${image}`}
+                      alt={`Best Seller ${index + 1}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="mt-3">
+                    <h3 className="font-semibold text-sm">Premium Style #{index + 1}</h3>
+                    <p className="text-accent font-bold">Best Seller</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
+          </div>
         </div>
       </div>
 

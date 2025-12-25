@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
         }
       ],
       application_context: {
-        brand_name: orderData.application_context?.brand_name || 'Shop JR',
+        brand_name: orderData.application_context?.brand_name || 'Luxury Culture',
         landing_page: orderData.application_context?.landing_page || 'LOGIN',
         user_action: orderData.application_context?.user_action || 'PAY_NOW',
         return_url: orderData.application_context?.return_url,

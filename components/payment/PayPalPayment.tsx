@@ -96,7 +96,7 @@ export function PayPalPayment({ total, orderInfo, onSuccess }: PayPalPaymentProp
                 }
               },
               items: [{
-                name: 'Shop JR Order',
+                name: 'Luxury Culture Order',
                 description: `Order for ${orderInfo.firstName} ${orderInfo.lastName}`,
                 unit_amount: {
                   currency_code: 'USD',
@@ -124,7 +124,7 @@ export function PayPalPayment({ total, orderInfo, onSuccess }: PayPalPaymentProp
               }
             },
             application_context: {
-              brand_name: 'Shop JR',
+              brand_name: 'Luxury Culture',
               landing_page: 'LOGIN',
               user_action: 'PAY_NOW',
               return_url: `${window.location.origin}/checkout/paypal/success`,

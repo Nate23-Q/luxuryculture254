@@ -65,7 +65,7 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
         phoneNumber: phoneNumber.replace(/\s/g, ''),
         amount: Math.round(total), // M-Pesa requires integer amount
         accountReference: `SHOPJR${Date.now()}`,
-        transactionDesc: 'Shop JR Online Purchase',
+        transactionDesc: 'Luxury Culture Online Purchase',
         callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/payment/mpesa/callback`,
         orderInfo: {
           ...orderInfo,
