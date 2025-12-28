@@ -60,45 +60,25 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
     setIsProcessing(true)
 
     try {
-      // Prepare the STK Push request
-      const requestData = {
-        phoneNumber: phoneNumber.replace(/\s/g, ''),
-        amount: Math.round(total), // M-Pesa requires integer amount
-        accountReference: `SHOPJR${Date.now()}`,
-        transactionDesc: 'Luxury Culture Online Purchase',
-        callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/payment/mpesa/callback`,
-        orderInfo: {
-          ...orderInfo,
-          total,
-          items: [] // This would come from the cart in a real implementation
-        }
+      const response = await fetch('/api/payment/mpesa/stkpush', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phoneNumber: phoneNumber.replace(/\s/g, ''),
+          amount: Math.round(total),
+          accountReference: `SHOPJR${Date.now()}`,
+          transactionDesc: 'Luxury Culture Online Purchase'
+        })
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setIsSTKSent(true)
+        toast.success('STK Push sent! Check your phone to complete payment.')
+      } else {
+        toast.error(data.error || 'Failed to initiate payment')
       }
-
-      // Simulate API call to initiate STK Push
-      console.log('Initiating STK Push with data:', requestData)
-      
-      // In a real implementation, this would be:
-      // const response = await fetch('/api/payment/mpesa/stkpush', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(requestData)
-      // })
-      // const data = await response.json()
-
-      // Simulate processing time
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      // Simulate successful STK push initiation
-      setIsSTKSent(true)
-      toast.success('STK Push sent to your phone! Please check your M-Pesa to complete payment.')
-      
-      // Simulate callback after 30 seconds (in real implementation, this would be from Safaricom)
-      setTimeout(() => {
-        toast.success('Payment completed successfully!')
-        onSuccess()
-        // Redirect to success page or show success message
-        window.location.href = '/order/success'
-      }, 30000)
 
     } catch (error) {
       console.error('STK Push error:', error)
