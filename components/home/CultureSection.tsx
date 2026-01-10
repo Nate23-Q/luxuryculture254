@@ -210,9 +210,8 @@ export function CultureSection() {
           {/* Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             {blogPosts.map((post) => (
-              <Link
+              <div
                 key={post.id}
-                href={post.href}
                 className="group card-hover overflow-hidden"
               >
                 <div className="aspect-[4/3] overflow-hidden">
@@ -235,7 +234,7 @@ export function CultureSection() {
                     {post.excerpt}
                   </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 

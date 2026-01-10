@@ -94,18 +94,14 @@ export default function BestSellersPage() {
             {/* Image Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
               {[
-                'DSC02183.JPG', 'DSC02186.JPG', 'DSC02222.JPG', 'DSC02242.JPG',
-                'DSC02252.JPG', 'DSC02254.JPG', 'DSC02256.JPG', 'DSC02262.JPG',
-                'DSC02264.JPG', 'DSC02269.JPG', 'DSC02868.JPG', 'DSC02877.JPG',
-                'DSC02889.JPG', 'DSC02893.JPG', 'DSC02922.JPG', 'DSC02926.JPG',
-                'DSC02927.JPG', 'DSC02928.JPG', 'DSC02935.JPG', 'DSC02949.JPG',
-                'DSC02952.JPG', 'DSC02954.JPG', 'DSC02955.JPG', 'DSC02956.JPG',
-                'DSC02962.JPG', 'DSC02994_1.JPG', 'DSC02997_1.JPG', 'DSC03056_1.JPG'
+                'photo_2026-01-09_09-24-49.jpg', 'photo_2026-01-09_09-24-51.jpg', 'photo_2026-01-09_09-24-52.jpg', 'photo_2026-01-09_09-24-53.jpg',
+                'photo_2026-01-09_09-24-54.jpg', 'photo_2026-01-09_09-24-55.jpg', 'photo_2026-01-09_09-24-56.jpg', 'photo_2026-01-09_09-24-57.jpg',
+                'photo_2026-01-09_09-24-58.jpg', 'photo_2026-01-09_09-24-59.jpg', 'photo_2026-01-09_09-25-36.jpg', 'photo_2026-01-09_09-26-01.jpg'
               ].map((image, index) => (
                 <div key={image} className="group cursor-pointer">
                   <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
                     <img
-                      src={`/Arrivals/${image}`}
+                      src={`/IMG/latest/${image}`}
                       alt={`Best Seller ${index + 1}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
