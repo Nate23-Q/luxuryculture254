@@ -136,7 +136,7 @@ const mockBestsellers = [
   },
   {
     id: '7',
-    name: 'Air Jordan 4 Retro Brick SP,HF',
+    name: 'Air Jordan 4 Retro Brick by SP',
     slug: 'chuck-taylor-all-star',
     description: 'The iconic Converse Chuck Taylor with classic canvas upper and rubber sole.',
     price: 1000,
@@ -155,7 +155,7 @@ const mockBestsellers = [
   },
   {
     id: '8',
-    name: 'Nike SB Dunk Low Wizard',
+    name: 'Nike SB Dunk Low Wizard of OZ',
     slug: 'classic-leather',
     description: 'Reebok\'s timeless leather sneaker with vintage styling and comfortable fit.',
     price: 6500,
