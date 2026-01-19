@@ -12,7 +12,7 @@ export function GiftSection() {
           <div className="relative">
             <div className="aspect-square bg-secondary-100 rounded-lg overflow-hidden relative">
               <Image
-                src="/Kicksmas.webp"
+                src="/IMG/Lux/lux4.jpg"
                 alt="Gift boxes"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -23,12 +23,10 @@ export function GiftSection() {
 
           {/* Content */}
           <div className="space-y-6">
-            <h2 className="heading-lg">The Best Gift By Far</h2>
+            <h2 className="heading-lg">WALK IN LUXURY, LIVE IN STYLE</h2>
             <p className="text-body">
-              If you're stumped with their size, favorite color, or sneaker of choice, you don't need to worry. 
-              Everyone loves gifts and we are here to make that gift-giving process worthwhile. Gift anyone 
-              with our exclusive gift card collection on any of our products. All gift cards have specified 
-              instructions on how to redeem them with no extra costs charged. Let's show out some LOVE.
+              Built on authenticity. Driven by culture.
+From iconic classics to rare finds, every sneaker at Luxury Culture is legit, verified, and selected for those who live boldly and dress intentionally.
             </p>
             <Button className="bg-secondary text-primary hover:bg-secondary-800">
               GIFT SOMEONE
