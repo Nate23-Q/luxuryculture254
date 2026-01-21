@@ -6,7 +6,7 @@ import { ProductGrid } from '@/components/product/ProductGrid'
 import FilterPanel from '@/components/shop/FilterPanel'
 import SortDropdown from '@/components/shop/SortDropdown'
 import { Search, SlidersHorizontal, Grid, List, ChevronLeft, ChevronRight } from 'lucide-react'
-import { mockProducts, brands, categories } from '@/lib/data/products'
+import { allProducts, brands, categories } from '@/lib/data/all-products'
 import { Product } from '@/types'
 import { CatalogCard } from '@/components/product/CatalogCard'
 
@@ -43,7 +43,7 @@ function ShopContent() {
 
   // Filter products
   const filteredProducts = useMemo(() => {
-    return mockProducts.filter(product => {
+    return allProducts.filter(product => {
       const matchesSearch = !searchQuery || 
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -61,7 +61,7 @@ function ShopContent() {
       return matchesSearch && matchesCategory && matchesBrand && matchesGender && 
              matchesSize && matchesColor && matchesPrice && matchesStock && matchesSale
     })
-  }, [mockProducts, searchQuery, filters])
+  }, [allProducts, searchQuery, filters])
 
   // Sort products
   const sortedProducts = useMemo(() => {
@@ -98,17 +98,17 @@ function ShopContent() {
     const categoryCounts: Record<string, number> = {}
     const brandCounts: Record<string, number> = {}
     
-    mockProducts.forEach(product => {
+    allProducts.forEach(product => {
       categoryCounts[product.category] = (categoryCounts[product.category] || 0) + 1
       brandCounts[product.brand] = (brandCounts[product.brand] || 0) + 1
     })
     
     return {
-      total: mockProducts.length,
+      total: allProducts.length,
       categories: categoryCounts,
       brands: brandCounts
     }
-  }, [mockProducts])
+  }, [allProducts])
 
   const handleFilterChange = (newFilters: Filters) => {
     setFilters(newFilters)
@@ -203,7 +203,7 @@ function ShopContent() {
                 const filterParam = searchParams.get('filter')
 
                 if (filterParam === 'new' || filterParam === 'bestsellers') {
-                  const list = mockProducts.filter(p => filterParam === 'new' ? p.isNewArrival : p.isBestseller)
+                  const list = allProducts.filter(p => filterParam === 'new' ? p.isNewArrival : p.isBestseller)
                   return (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                       {list.map(product => (

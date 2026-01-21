@@ -93,7 +93,7 @@ export function FeaturedCollections() {
                   <Button 
                     variant="outline" 
                     className="border-primary text-primary hover:bg-primary hover:text-secondary w-fit"
-                    onClick={() => openOverlay(collection.image)}
+                    onClick={() => window.location.href = `/collections/${collection.id === '1' ? 'jordan' : collection.id === '2' ? 'yeezy' : 'culture'}`}
                   >
                     EXPLORE COLLECTION
                   </Button>

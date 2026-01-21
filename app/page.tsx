@@ -74,7 +74,7 @@ export default function HomePage() {
               Serious deals on premium footwear. Limited time only - 
               don't miss out on these fire discounts with latest sneaker photos.
             </p>
-            <Link href="/shop?sale=true">
+            <Link href="/shop">
               <Button variant="secondary">SHOP ALL SALE ITEMS</Button>
             </Link>
           </div>
