@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 
 export function GiftSection() {
@@ -28,9 +29,11 @@ export function GiftSection() {
               Built on authenticity. Driven by culture.
 From iconic classics to rare finds, every sneaker at Luxury Culture is legit, verified, and selected for those who live boldly and dress intentionally.
             </p>
-            <Button className="bg-secondary text-primary hover:bg-secondary-800">
-              GIFT SOMEONE
-            </Button>
+            <Link href="/new-arrivals">
+              <Button className="bg-secondary text-primary hover:bg-secondary-800">
+                GIFT SOMEONE
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

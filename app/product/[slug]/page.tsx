@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { useCartStore } from '@/lib/store/cart'
+import { useWishlistStore } from '@/lib/store/wishlist'
 import { Button } from '@/components/ui/Button'
 import { Minus, Plus, ShoppingCart, Heart, Share2, ChevronRight } from 'lucide-react'
 import { allProducts } from '@/lib/data/all-products'
@@ -11,6 +12,7 @@ import { allProducts } from '@/lib/data/all-products'
 export default function ProductDetailPage() {
   const params = useParams()
   const { addItem } = useCartStore()
+  const { addItem: addToWishlist, removeItem: removeFromWishlist, isInWishlist } = useWishlistStore()
   const [selectedSize, setSelectedSize] = useState('')
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
@@ -49,6 +51,29 @@ export default function ProductDetailPage() {
     })
 
     alert('Added to cart!')
+  }
+
+  const handleWishlistToggle = () => {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id)
+      alert('Removed from wishlist!')
+    } else {
+      addToWishlist(product)
+      alert('Added to wishlist!')
+    }
+  }
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: `Check out this ${product.name} for $${product.price}`,
+        url: window.location.href
+      })
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+      alert('Product link copied to clipboard!')
+    }
   }
 
   return (
@@ -156,11 +181,21 @@ export default function ProductDetailPage() {
               </Button>
 
               <div className="flex space-x-4">
-                <button className="flex-1 p-3 border border-secondary-300 rounded-lg hover:border-accent transition-colors flex items-center justify-center space-x-2">
-                  <Heart size={20} />
+                <button 
+                  onClick={handleWishlistToggle}
+                  className={`flex-1 p-3 border rounded-lg transition-colors flex items-center justify-center space-x-2 ${
+                    isInWishlist(product.id) 
+                      ? 'border-accent bg-accent text-primary' 
+                      : 'border-secondary-300 hover:border-accent'
+                  }`}
+                >
+                  <Heart size={20} className={isInWishlist(product.id) ? 'fill-current' : ''} />
                   <span>Wishlist</span>
                 </button>
-                <button className="flex-1 p-3 border border-secondary-300 rounded-lg hover:border-accent transition-colors flex items-center justify-center space-x-2">
+                <button 
+                  onClick={handleShare}
+                  className="flex-1 p-3 border border-secondary-300 rounded-lg hover:border-accent transition-colors flex items-center justify-center space-x-2"
+                >
                   <Share2 size={20} />
                   <span>Share</span>
                 </button>

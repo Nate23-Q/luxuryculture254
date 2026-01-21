@@ -2,13 +2,13 @@
 
 import { useMemo } from 'react'
 import { ProductGrid } from '@/components/product/ProductGrid'
-import { mockProducts } from '@/lib/data/products'
+import { allProducts } from '@/lib/data/all-products'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function NewArrivalsPage() {
   const newArrivalProducts = useMemo(() => {
-    return mockProducts.filter(product => product.isNewArrival && product.inStock)
+    return allProducts.filter(product => product.isNewArrival && product.inStock)
   }, [])
 
   return (

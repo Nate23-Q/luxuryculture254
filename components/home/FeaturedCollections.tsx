@@ -7,7 +7,7 @@ import { X } from 'lucide-react'
 const collections = [
   {
     id: '1',
-    title: 'AIR JORDAN',
+    
     subtitle: 'LEGENDARY BEGINS HERE',
     description: 'The iconic line that started it all. From the classic AJ1 to the latest retros.',
     image: '/IMG/Lux/lux5.jpg',
@@ -17,17 +17,17 @@ const collections = [
   },
   {
     id: '2',
-    title: 'Nike SB Dunk Low Pro',
+  
     subtitle: 'THE FUTURE IS NOW',
     description: 'Kanye West\'s revolutionary designs that changed the sneaker game forever.',
-    image: '/IMG/Lux/lux6.jpg',
+    image: '/IMG/Lux/lux8.jpg',
     href: '/shop?brand=adidas',
     bgColor: 'bg-secondary',
     textColor: 'text-primary'
   },
   {
     id: '3',
-    title: 'STREETWEAR',
+   
     subtitle: 'EXPRESS YOURSELF',
     description: 'Premium apparel and accessories for the culture. Style that speaks volumes.',
     image: '/IMG/Lux/lux7.jpg',
