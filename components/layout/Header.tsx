@@ -52,7 +52,7 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <img
-                src="/logo3.png"
+                src="/IMG/Lux/logo.jpg"
                 alt="Luxury Culture Logo"
                 className="h-12 w-auto lg:h-20"
               />

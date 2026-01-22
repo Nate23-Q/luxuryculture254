@@ -57,16 +57,16 @@ export default function AboutPage() {
                 <div>
                   <h3 className="font-semibold mb-2">Visit Our Store</h3>
                   <p className="text-sm">
-                    Westlands, Nairobi<br />
+                    Killimani, Nairobi<br />
                     Kenya<br />
-                    Open: Mon-Sat 9AM-7PM
+                    Open: Mon-Sat 9AM-11PM
                   </p>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Get In Touch</h3>
                   <p className="text-sm">
-                    📞 +254 700 000 000<br />
-                    📧 support@shopjr.com<br />
+                    📞 +254 787 507945<br />
+                    📧 support@Luxuryculture254.com<br />
                     🌐 www.Luxury Culture.com
                   </p>
                 </div>

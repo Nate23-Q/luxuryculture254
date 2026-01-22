@@ -6,14 +6,13 @@
 - [x] 1. Analyze current product structure
 - [x] 2. Check available images in `/IMG/Arrivals/`
 - [x] 3. Get user approval for implementation plan
+- [x] 4. Create `/lib/data/shoe-catalog.ts` with all 72 products
+- [x] 5. Create `/app/editorial/page.tsx` - Stories/Stories page (makes "View All Stories" button work)
 
 ### Steps In Progress:
-- [ ] 4. Create `/lib/data/shoe-catalog.ts` with all 72 products
-
-### Steps Remaining:
-- [ ] 5. Update `/lib/data/products.ts` to use new catalog
-- [ ] 6. Update `/lib/mockProducts.ts` to use new products
-- [ ] 7. Test the application
+- [ ] 6. Update `/lib/data/products.ts` to use new catalog
+- [ ] 7. Update `/lib/mockProducts.ts` to use new products
+- [ ] 8. Test the application
 
 ### Shoe Names to Implement (72 total):
 
