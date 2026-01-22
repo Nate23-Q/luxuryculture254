@@ -5,12 +5,15 @@ import { ArrowRight } from 'lucide-react'
 export function HeroSection() {
   return (
     <section className="relative min-h-[70vh] lg:min-h-[80vh] bg-secondary overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image with Optimization */}
       <div className="absolute inset-0">
         <img
           src="/IMG/Arrivals/DSC02186.JPG"
           alt="Luxury Culture Hero"
           className="w-full h-full object-cover opacity-60"
+          loading="eager"
+          decoding="async"
+          sizes="(max-width: 1024px) 100vw, 100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
       </div>

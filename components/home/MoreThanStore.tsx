@@ -18,6 +18,9 @@ export function MoreThanStore() {
                 src="/IMG/Lux/lux1.jpg"
                 alt="Community member"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
             <div className="absolute bottom-4 left-4">
@@ -35,6 +38,9 @@ export function MoreThanStore() {
                 src="/IMG/Lux/lux2.jpg"
                 alt="Collaboration workspace"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
             <div className="absolute bottom-4 left-4">
@@ -52,6 +58,9 @@ export function MoreThanStore() {
                 src="/IMG/Lux/lux3.jpg"
                 alt="Authentic sneakers"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
             <div className="absolute bottom-4 left-4">

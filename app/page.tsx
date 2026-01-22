@@ -9,6 +9,9 @@ import { BrandShowcase } from '@/components/home/BrandShowcase'
 import { GiftSection } from '@/components/home/GiftSection'
 import { MoreThanStore } from '@/components/home/MoreThanStore'
 import { EndOfYearPromo } from '@/components/home/EndOfYearPromo'
+import { BrandStory } from '@/components/home/BrandStory'
+import { Testimonials } from '@/components/home/Testimonials'
+import { StrategicCTA } from '@/components/home/StrategicCTA'
 import { allProducts } from '@/lib/data/all-products'
 
 // Get products from actual data with fallback to show some products
@@ -25,12 +28,15 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection />
 
+      {/* Brand Story Section - Build Trust & Connection */}
+      <BrandStory />
+
       {/* New Drops Section */}
       <section className="section-padding bg-primary">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="heading-lg mb-4">NEW DROPS</h2>
-            <p className="text-body mb-6 max-w-2xl mx-auto">
+            <p className="text-body-lg mb-6 max-w-2xl mx-auto">
               Be the first to cop the latest releases from your favorite brands. 
               Fresh heat, straight to your doorstep.
             </p>
@@ -47,7 +53,7 @@ export default function HomePage() {
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="heading-lg mb-4">BESTSELLERS</h2>
-            <p className="text-body mb-6 max-w-2xl mx-auto">
+            <p className="text-body-lg mb-6 max-w-2xl mx-auto">
               The most popular kicks that everyone's talking about. 
               These classics never go out of style.
             </p>
@@ -65,12 +71,15 @@ export default function HomePage() {
       {/* More Than Store Section */}
       <MoreThanStore />
 
+      {/* Strategic CTA - Newsletter & Engagement */}
+      <StrategicCTA />
+
       {/* Sale Section */}
       <section className="section-padding bg-accent text-primary">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="heading-lg mb-4">SALE</h2>
-            <p className="text-body mb-6 max-w-2xl mx-auto opacity-90">
+            <p className="text-body-lg mb-6 max-w-2xl mx-auto opacity-90">
               Serious deals on premium footwear. Limited time only - 
               don't miss out on these fire discounts with latest sneaker photos.
             </p>
@@ -81,6 +90,9 @@ export default function HomePage() {
           <ProductGrid products={saleProducts} />
         </div>
       </section>
+
+      {/* Testimonials Section - Social Proof */}
+      <Testimonials />
 
       {/* Featured Collections */}
       <FeaturedCollections />
