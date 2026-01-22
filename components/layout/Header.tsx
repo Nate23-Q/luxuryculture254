@@ -32,9 +32,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
       {/* Top Bar */}
-      <div className="bg-accent text-white text-center py-grid-1 text-sm font-medium tracking-wide">
-        ALL PRICE WILL HAVE 10% DISCOUNT ON THE WEBSITE AS END OF THE YEAR PROMO
-      </div>
+      
 
       {/* Main Header */}
       <div className="bg-white">
@@ -50,16 +48,16 @@ export function Header() {
             </button>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2 group">
               <img
                 src="/IMG/Lux/logo.jpg"
                 alt="Luxury Culture Logo"
-                className="h-12 w-auto lg:h-20"
+                className="h-12 w-auto lg:h-20 transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="bg-accent text-white px-3 py-2 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl shadow-lg">
-                <div className="text-xs lg:text-sm font-bold tracking-wide lg:tracking-widest uppercase">
-                  <span className="hidden sm:inline">Luxury Culture</span>
-                  <span className="sm:hidden">LUXURY<br/>CULTURE</span>
+              <div className="bg-gradient-to-br from-accent to-red-700 text-white px-3 py-2 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:scale-105 group-hover:from-red-600 group-hover:to-red-800 border border-white/20">
+                <div className="text-xs lg:text-sm font-bold tracking-wide lg:tracking-widest uppercase letter-spacing-tight">
+                  <span className="hidden sm:inline drop-shadow-md">Luxury Culture</span>
+                  <span className="sm:hidden drop-shadow-md">LUXURY<br/>CULTURE</span>
                 </div>
               </div>
             </Link>
