@@ -80,14 +80,14 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 group">
               <img
-                src="/IMG/Lux/logo.jpg"
+                src="/IMG/logo3.png"
                 alt="Luxury Culture Logo"
                 className="h-12 w-auto lg:h-20 transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="bg-gradient-to-br from-accent to-red-700 text-white px-3 py-2 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:scale-105 group-hover:from-red-600 group-hover:to-red-800 border border-white/20">
-                <div className="text-xs lg:text-sm font-bold tracking-wide lg:tracking-widest uppercase letter-spacing-tight">
+              <div className="bg-gradient-to-br from-accent to-red-700 text-white px-2 py-1 lg:px-4 lg:py-2 rounded-md lg:rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 group-hover:from-red-600 group-hover:to-red-800 border border-white/20">
+                <div className="text-[10px] lg:text-xs font-bold tracking-wide lg:tracking-wider uppercase">
                   <span className="hidden sm:inline drop-shadow-md">Luxury Culture</span>
-                  <span className="sm:hidden drop-shadow-md">LUXURY<br/>CULTURE</span>
+                  <span className="sm:hidden drop-shadow-md text-[9px]">LUX<br/>CULT</span>
                 </div>
               </div>
             </Link>
@@ -135,17 +135,17 @@ export function Header() {
                             )}
                             {item.name === 'Apparel' && (
                               <>
-                                <Link href="/shop?category=tops" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Tops</p>
+                                <Link href="/shop?category=sneakers" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
+                                  <p className="text-sm font-medium text-black">Sneakers</p>
                                 </Link>
-                                <Link href="/shop?category=bottoms" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Bottoms</p>
+                                <Link href="/shop?category=boots" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
+                                  <p className="text-sm font-medium text-black">Boots</p>
                                 </Link>
-                                <Link href="/shop?category=outerwear" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Outerwear</p>
+                                <Link href="/shop?category=running" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
+                                  <p className="text-sm font-medium text-black">Running</p>
                                 </Link>
-                                <Link href="/shop?category=hoodies" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Hoodies</p>
+                                <Link href="/shop?category=court" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
+                                  <p className="text-sm font-medium text-black">Court</p>
                                 </Link>
                               </>
                             )}
