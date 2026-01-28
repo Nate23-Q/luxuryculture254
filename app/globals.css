@@ -611,17 +611,28 @@
 
 /* Refined product card */
 .product-card-luxury {
-  @apply group relative;
+  position: relative;
 }
 
 .product-card-luxury::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  z-index: 10;
+}
+
+.product-card-luxury:hover::before {
+  opacity: 1;
 }
 
 /* Luxury dividers */
 .divider-luxury {
-  @apply relative h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent;
+  position: relative;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgb(209, 213, 219), transparent);
 }
 
 /* Premium typography spacing */
@@ -644,7 +655,10 @@
 
 /* Refined focus states for accessibility */
 .focus-luxury:focus {
-  @apply outline-none ring-2 ring-accent ring-offset-2;
+  outline: none;
+  ring: 2px;
+  ring-color: var(--ring);
+  ring-offset: 2px;
 }
 
 /* Mobile performance optimizations */
