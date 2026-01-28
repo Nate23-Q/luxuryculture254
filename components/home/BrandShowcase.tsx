@@ -57,24 +57,38 @@ export function BrandShowcase() {
   ]
 
   return (
-    <section className="section-padding bg-secondary-50">
+    <section className="py-20 lg:py-28 bg-white border-y border-gray-100">
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="heading-lg mb-4">Official Retailer</h2>
-          <p className="text-body">Authorized dealer for premium brands</p>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 mb-8">
+            <div className="h-1 w-12 bg-gradient-to-r from-accent to-red-500"></div>
+            <span className="text-xs font-bold tracking-widest text-accent uppercase">Official Retailer</span>
+            <div className="h-1 w-12 bg-gradient-to-r from-red-500 to-accent"></div>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight" style={{ letterSpacing: '-0.02em' }}>
+            Premium Brand Partners
+          </h2>
+          <p className="text-lg text-gray-600 font-medium">Authorized dealer for premium brands trusted worldwide</p>
         </div>
         
-        <div className="overflow-hidden">
-          <div className="flex animate-scroll space-x-8">
+        <div className="overflow-hidden rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 p-8 lg:p-12">
+          <div className="flex animate-scroll space-x-12 lg:space-x-16">
             {[...brands, ...brands].map((brand, index) => (
-              <div key={`${brand.name}-${index}`} className="flex-shrink-0 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-red-600">{brand.logo}</div>
+              <div key={`${brand.name}-${index}`} className="flex-shrink-0 text-center group">
+                <div className="w-24 h-24 lg:w-28 lg:h-28 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 border-2 border-gray-200 shadow-lg group-hover:shadow-2xl group-hover:border-accent transition-all duration-300 group-hover:scale-110">
+                  <div className="text-accent text-3xl group-hover:scale-125 transition-transform duration-300">{brand.logo}</div>
                 </div>
-                <p className="text-sm font-medium text-gray-700">{brand.name}</p>
+                <p className="text-base font-bold text-gray-800 group-hover:text-accent transition-colors">{brand.name}</p>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Trust Statement */}
+        <div className="mt-12 text-center">
+          <p className="text-gray-600 text-sm font-medium max-w-2xl mx-auto">
+            Every product is 100% authentic and verified by our expert team. We partner only with authorized distributors to ensure quality and authenticity.
+          </p>
         </div>
       </div>
     </section>

@@ -9,7 +9,7 @@ import { BrandShowcase } from '@/components/home/BrandShowcase'
 import { GiftSection } from '@/components/home/GiftSection'
 import { MoreThanStore } from '@/components/home/MoreThanStore'
 import { EndOfYearPromo } from '@/components/home/EndOfYearPromo'
-import { BrandStory } from '@/components/home/BrandStory'
+import { BrandStorySection } from '@/components/home/BrandStorySection'
 import { Testimonials } from '@/components/home/Testimonials'
 import { StrategicCTA } from '@/components/home/StrategicCTA'
 import { allProducts } from '@/lib/data/all-products'
@@ -29,7 +29,7 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Brand Story Section - Build Trust & Connection */}
-      <BrandStory />
+      <BrandStorySection />
 
       {/* New Drops Section */}
       <section className="section-padding bg-primary">

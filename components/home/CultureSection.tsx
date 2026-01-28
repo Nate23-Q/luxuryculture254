@@ -91,8 +91,7 @@ export function CultureSection() {
             <div className="flex items-center gap-3">
               <MapPin size={24} />
               <div>
-                <p className="font-bold">Proudly Kenyan</p>
-                <p className="text-sm opacity-90">Born in Nairobi, serving the continent</p>
+               
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -145,42 +144,43 @@ export function CultureSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
           {/* Left Column - Content */}
           <div>
-            <div className="bg-accent text-primary px-4 py-2 rounded-lg font-bold text-sm inline-block mb-6">
-              THE CULTURE
+            <div className="inline-flex items-center space-x-2 mb-8">
+              <div className="h-1 w-12 bg-gradient-to-r from-accent to-red-500"></div>
+              <span className="text-xs font-bold tracking-widest text-accent uppercase">The Culture</span>
             </div>
             
-            <h2 className="text-3xl lg:text-5xl font-display font-bold mb-6">
-              MORE THAN JUST
+            <h2 className="text-4xl lg:text-6xl font-black mb-8 leading-tight" style={{ letterSpacing: '-0.02em' }}>
+              More Than
               <br />
-              <span className="text-accent">SNEAKERS</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-red-500">Just Sneakers</span>
             </h2>
             
-            <p className="text-lg mb-8 opacity-90 max-w-lg">
+            <p className="text-lg lg:text-xl mb-8 opacity-90 max-w-lg leading-relaxed" style={{ lineHeight: '1.75' }}>
               We're not just a store – we're a community of passionate individuals 
               who celebrate sneaker culture, streetwear, and the stories behind every drop. 
               Join the movement.
             </p>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
               {cultureFeatures.map((feature) => {
                 const IconComponent = feature.icon
                 return (
-                  <div key={feature.title} className="text-center">
-                    <div className="bg-accent text-primary p-3 rounded-lg w-fit mx-auto mb-3">
-                      <IconComponent size={24} />
+                  <div key={feature.title} className="group p-6 bg-white border border-gray-100 rounded-lg hover:shadow-lg hover:border-accent transition-all duration-300">
+                    <div className="bg-gradient-to-br from-accent/10 to-red-500/10 p-4 rounded-lg w-fit mb-4 group-hover:from-accent group-hover:to-red-500 transition-all duration-300">
+                      <IconComponent size={24} className="text-accent group-hover:text-white transition-colors" />
                     </div>
-                    <h3 className="font-bold text-sm mb-2">{feature.title}</h3>
-                    <p className="text-xs opacity-80">{feature.description}</p>
+                    <h3 className="font-bold text-base mb-3 group-hover:text-accent transition-colors">{feature.title}</h3>
+                    <p className="text-sm opacity-80 leading-relaxed group-hover:opacity-100 transition-opacity">{feature.description}</p>
                   </div>
                 )
               })}
             </div>
 
             <Link href="/about">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-secondary">
+              <Button className="group">
                 LEARN MORE ABOUT US
-                <ArrowRight size={18} className="ml-2" />
+                <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
@@ -217,46 +217,51 @@ export function CultureSection() {
         </div>
 
         {/* Editorial Section */}
-        <div className="border-t border-primary-700 pt-16">
-          <div className="text-center mb-12">
-            <div className="bg-accent text-primary px-4 py-2 rounded-lg font-bold text-sm inline-block mb-4">
-              EDITORIAL
+        <div className="border-t border-gray-200 pt-20">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 mb-8">
+              <div className="h-1 w-12 bg-gradient-to-r from-accent to-red-500"></div>
+              <span className="text-xs font-bold tracking-widest text-accent uppercase">Editorial</span>
+              <div className="h-1 w-12 bg-gradient-to-r from-red-500 to-accent"></div>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-display font-bold mb-4">
-              STORIES FROM THE CULTURE
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight" style={{ letterSpacing: '-0.02em' }}>
+              Stories from the Culture
             </h2>
-            <p className="text-lg opacity-90 max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
               Stay updated with the latest news, trends, and stories from the world 
               of sneakers and streetwear.
             </p>
           </div>
 
           {/* Blog Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {blogPosts.map((post) => (
               <div
                 key={post.id}
-                className="group card-hover overflow-hidden"
+                className="group card-luxury overflow-hidden"
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-[4/3] overflow-hidden bg-gray-200 image-zoom">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center text-xs text-secondary-400 mb-3">
+                  <div className="flex items-center text-xs text-gray-500 mb-4 font-medium tracking-wide">
                     <span>{post.author}</span>
                     <span className="mx-2">•</span>
                     <span>{post.date}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-secondary group-hover:text-accent transition-colors mb-3">
+                  <h3 className="text-lg font-bold text-black group-hover:text-accent transition-colors mb-4 leading-tight">
                     {post.title}
                   </h3>
-                  <p className="text-secondary-600 text-sm">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     {post.excerpt}
                   </p>
+                  <Link href={post.href} className="inline-flex items-center text-accent font-semibold hover:gap-2 transition-all">
+                    Read More <ArrowRight size={14} className="ml-2" />
+                  </Link>
                 </div>
               </div>
             ))}
@@ -264,9 +269,9 @@ export function CultureSection() {
 
           <div className="text-center">
             <Link href="/editorial">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-secondary">
+              <Button variant="outline" className="group">
                 VIEW ALL STORIES
-                <ArrowRight size={18} className="ml-2" />
+                <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>

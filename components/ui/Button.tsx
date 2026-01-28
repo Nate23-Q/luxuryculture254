@@ -11,21 +11,21 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', loading, children, disabled, ...props }, ref) => {
-    const baseClasses = 'inline-flex items-center justify-center font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-95 no-select'
+    const baseClasses = 'inline-flex items-center justify-center font-bold uppercase tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-95 no-select relative overflow-hidden'
     
     const variants = {
-      primary: 'bg-accent text-primary hover:bg-accent-600 focus-visible:ring-accent',
-      secondary: 'bg-secondary text-primary hover:bg-secondary-800 focus-visible:ring-secondary',
-      outline: 'border-2 border-accent text-accent bg-transparent hover:bg-accent hover:text-primary focus-visible:ring-accent',
-      ghost: 'text-accent hover:bg-accent-50 focus-visible:ring-accent',
+      primary: 'bg-gradient-to-r from-accent to-red-600 text-white hover:shadow-xl hover:shadow-accent/50 hover:-translate-y-1 focus-visible:ring-accent border border-accent/20',
+      secondary: 'bg-secondary text-primary hover:bg-secondary-800 hover:shadow-lg focus-visible:ring-secondary',
+      outline: 'border-2 border-accent text-accent bg-transparent hover:bg-accent hover:text-white hover:shadow-lg hover:-translate-y-1 focus-visible:ring-accent',
+      ghost: 'text-accent hover:bg-accent/10 focus-visible:ring-accent',
       link: 'text-accent underline-offset-4 hover:underline focus-visible:ring-accent',
     }
     
     const sizes = {
-      sm: 'h-11 px-4 text-sm rounded-md min-w-[44px]',
-      md: 'h-12 px-6 text-base rounded-md min-w-[44px]',
-      lg: 'h-14 px-8 text-lg rounded-md min-w-[44px]',
-      xl: 'h-16 px-10 text-xl rounded-lg min-w-[44px]',
+      sm: 'h-11 px-4 text-sm rounded-lg min-w-[44px]',
+      md: 'h-12 px-6 text-base rounded-lg min-w-[44px]',
+      lg: 'h-14 px-8 text-lg rounded-lg min-w-[44px]',
+      xl: 'h-16 px-10 text-xl rounded-xl min-w-[44px]',
     }
     
     return (

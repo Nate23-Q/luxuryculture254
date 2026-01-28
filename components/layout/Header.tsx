@@ -8,9 +8,8 @@ import { useCartStore } from '@/lib/store/cart'
 
 const navigation = [
   { name: 'Shop', href: '/shop' },
-  { name: 'Footwear', href: '/collections/footwear', hasDropdown: true },
-  { name: 'Apparel', href: '/collections/apparel', hasDropdown: true },
-  { name: 'Accessories', href: '/collections/accessories', hasDropdown: true },
+  { name: 'New Arrivals', href: '/new-arrivals' },
+  { name: 'Collections', href: '/collections', hasDropdown: true },
   { name: 'Sale', href: '/shop?sale=true' },
 ]
 
@@ -30,33 +29,35 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
+    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100 transition-all duration-300 hover:shadow-lg">
       {/* Top Trust Bar */}
-      <div className="bg-secondary text-primary py-2 hidden sm:block">
+      <div className="bg-accent text-white py-3 hidden sm:block">
         <div className="container-custom">
-          <div className="flex items-center justify-between text-xs">
+          <div className="flex items-center justify-between text-xs font-medium tracking-wide">
             <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <Shield size={14} className="text-accent" />
+              <div className="flex items-center space-x-2 hover:gap-3 transition-all">
+                <Shield size={14} />
                 <span>100% Authentic</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Truck size={14} className="text-accent" />
+              <div className="flex items-center space-x-2 hover:gap-3 transition-all">
+                <Truck size={14} />
                 <span>Same-day Nairobi delivery</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Award size={14} className="text-accent" />
+              <div className="flex items-center space-x-2 hover:gap-3 transition-all">
+                <Award size={14} />
                 <span>Kenyan Owned & Operated</span>
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Link href="/size-guide" className="hover:text-accent transition-colors">
+              <Link href="/size-guide" className="hover:gap-1 transition-all hover:underline">
                 Size Guide
               </Link>
-              <Link href="/shipping" className="hover:text-accent transition-colors">
+              <span className="opacity-50">|</span>
+              <Link href="/shipping" className="hover:gap-1 transition-all hover:underline">
                 Shipping
               </Link>
-              <Link href="/returns" className="hover:text-accent transition-colors">
+              <span className="opacity-50">|</span>
+              <Link href="/returns" className="hover:gap-1 transition-all hover:underline">
                 Returns
               </Link>
             </div>
@@ -78,16 +79,15 @@ export function Header() {
             </button>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 group">
+            <Link href="/" className="flex items-center space-x-1.5 group flex-shrink-0">
               <img
                 src="/IMG/logo3.png"
                 alt="Luxury Culture Logo"
-                className="h-12 w-auto lg:h-20 transition-transform duration-300 group-hover:scale-105"
+                className="h-12 w-auto lg:h-20 transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
               />
-              <div className="bg-gradient-to-br from-accent to-red-700 text-white px-2 py-1 lg:px-4 lg:py-2 rounded-md lg:rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 group-hover:from-red-600 group-hover:to-red-800 border border-white/20">
-                <div className="text-[10px] lg:text-xs font-bold tracking-wide lg:tracking-wider uppercase">
-                  <span className="hidden sm:inline drop-shadow-md">Luxury Culture</span>
-                  <span className="sm:hidden drop-shadow-md text-[9px]">LUX<br/>CULT</span>
+              <div className="bg-gradient-to-br from-accent to-red-700 text-white px-2.5 py-1.5 lg:px-4 lg:py-2.5 rounded-md lg:rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 group-hover:from-red-600 group-hover:to-red-800 border border-white/20 flex-shrink-0 whitespace-nowrap">
+                <div className="text-[11px] md:text-xs lg:text-sm font-bold tracking-wider uppercase drop-shadow-md">
+                  Luxury Culture
                 </div>
               </div>
             </Link>
@@ -111,67 +111,35 @@ export function Header() {
                       </Link>
 
                       {/* Dropdown Menu */}
-                      <div className="absolute left-0 mt-2 w-80 bg-white border border-gray-200 shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div className="p-6">
-                          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                            Shop All {item.name}
+                      <div className="absolute left-0 mt-2 w-72 bg-white border border-gray-200 shadow-xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div className="p-8">
+                          <h4 className="text-xs font-bold text-gray-600 uppercase tracking-widest mb-6 text-accent">
+                            Featured Collections
                           </h4>
-                          <div className="grid grid-cols-2 gap-4">
-                            {item.name === 'Footwear' && (
+                          <div className="space-y-3">
+                            {item.name === 'Collections' && (
                               <>
-                                <Link href="/shop?category=sneakers" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Sneakers</p>
+                                <Link href="/collections/footwear" className="block p-3 hover:bg-accent/5 rounded-lg transition-all hover:translate-x-1 group/link">
+                                  <p className="text-sm font-semibold text-black group-hover/link:text-accent transition-colors">Footwear</p>
+                                  <p className="text-xs text-gray-500">Premium sneakers & kicks</p>
                                 </Link>
-                                <Link href="/shop?category=boots" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Boots</p>
+                                <Link href="/collections/apparel" className="block p-3 hover:bg-accent/5 rounded-lg transition-all hover:translate-x-1 group/link">
+                                  <p className="text-sm font-semibold text-black group-hover/link:text-accent transition-colors">Apparel</p>
+                                  <p className="text-xs text-gray-500">Exclusive streetwear</p>
                                 </Link>
-                                <Link href="/shop?category=running" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Running</p>
-                                </Link>
-                                <Link href="/shop?category=court" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Court</p>
-                                </Link>
-                              </>
-                            )}
-                            {item.name === 'Apparel' && (
-                              <>
-                                <Link href="/shop?category=sneakers" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Sneakers</p>
-                                </Link>
-                                <Link href="/shop?category=boots" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Boots</p>
-                                </Link>
-                                <Link href="/shop?category=running" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Running</p>
-                                </Link>
-                                <Link href="/shop?category=court" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Court</p>
-                                </Link>
-                              </>
-                            )}
-                            {item.name === 'Accessories' && (
-                              <>
-                                <Link href="/shop?category=bags" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Bags</p>
-                                </Link>
-                                <Link href="/shop?category=hats" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Hats</p>
-                                </Link>
-                                <Link href="/shop?category=belts" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Belts</p>
-                                </Link>
-                                <Link href="/shop?category=jewelry" className="block p-3 hover:bg-gray-50 rounded-md transition-colors">
-                                  <p className="text-sm font-medium text-black">Jewelry</p>
+                                <Link href="/collections/accessories" className="block p-3 hover:bg-accent/5 rounded-lg transition-all hover:translate-x-1 group/link">
+                                  <p className="text-sm font-semibold text-black group-hover/link:text-accent transition-colors">Accessories</p>
+                                  <p className="text-xs text-gray-500">Premium finishing touches</p>
                                 </Link>
                               </>
                             )}
                           </div>
-                          <div className="mt-4 pt-4 border-t border-gray-100">
+                          <div className="mt-6 pt-6 border-t border-gray-100">
                             <Link 
                               href={item.href} 
-                              className="text-accent text-sm font-medium hover:text-accent-600 transition-colors"
+                              className="inline-flex items-center text-accent font-bold text-sm hover:gap-2 transition-all"
                             >
-                              View All {item.name} →
+                              Explore All Collections <ChevronDown size={14} className="ml-2 rotate-180" />
                             </Link>
                           </div>
                         </div>
