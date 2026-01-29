@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Search, ShoppingCart, User, Menu, X, ChevronDown, Shield, Award, Truck } from 'lucide-react'
+import { useSession, signOut } from 'next-auth/react'
+import { Search, ShoppingCart, User, Menu, X, ChevronDown, Shield, Award, Truck, LogOut } from 'lucide-react'
 import { useCartStore } from '@/lib/store/cart'
 
 const navigation = [
@@ -17,6 +18,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const pathname = usePathname()
+  const { data: session, status } = useSession()
   const { items } = useCartStore()
 
   const cartItemsCount = items.reduce((total, item) => total + item.quantity, 0)
@@ -184,13 +186,56 @@ export function Header() {
             {/* Right Side Actions */}
             <div className="flex items-center space-x-4">
               {/* User Account */}
-              <Link
-                href="/account"
-                className="touch-target text-black hover:text-accent hover:bg-gray-50 rounded-lg transition-all duration-200 active-scale"
-                aria-label="Account"
-              >
-                <User size={22} />
-              </Link>
+              {status === 'loading' ? (
+                <div className="w-8 h-8 rounded-full bg-gray-100 animate-pulse" />
+              ) : session ? (
+                <div className="relative group">
+                  <button className="touch-target text-black hover:text-accent hover:bg-gray-50 rounded-lg transition-all duration-200 active-scale flex items-center gap-2">
+                    <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center">
+                      <User size={18} className="text-accent" />
+                    </div>
+                  </button>
+                  {/* Dropdown Menu */}
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className="p-2">
+                      <div className="px-3 py-2 border-b border-gray-100">
+                        <p className="text-sm font-medium text-black truncate">
+                          {session.user?.firstName} {session.user?.lastName}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {session.user?.email}
+                        </p>
+                      </div>
+                      <Link
+                        href="/account"
+                        className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                      >
+                        My Account
+                      </Link>
+                      <Link
+                        href="/cart"
+                        className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                      >
+                        Shopping Cart
+                      </Link>
+                      <button
+                        onClick={() => signOut({ callbackUrl: '/' })}
+                        className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-2"
+                      >
+                        <LogOut size={14} /> Sign Out
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  href="/auth/signin"
+                  className="touch-target text-black hover:text-accent hover:bg-gray-50 rounded-lg transition-all duration-200 active-scale"
+                  aria-label="Sign In"
+                >
+                  <User size={22} />
+                </Link>
+              )}
 
               {/* Shopping Cart */}
               <Link
@@ -248,14 +293,51 @@ export function Header() {
             
             {/* Mobile Account Link */}
             <div className="mt-6 pt-6 border-t border-gray-100">
-              <Link
-                href="/account"
-                className="flex items-center space-x-3 text-black hover:text-accent transition-colors py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <User size={20} />
-                <span className="text-base font-medium">My Account</span>
-              </Link>
+              {session ? (
+                <div className="space-y-3">
+                  <div className="px-3">
+                    <p className="text-sm font-medium text-black">
+                      {session.user?.firstName} {session.user?.lastName}
+                    </p>
+                    <p className="text-xs text-gray-500">{session.user?.email}</p>
+                  </div>
+                  <Link
+                    href="/account"
+                    className="flex items-center space-x-3 text-black hover:text-accent transition-colors py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <User size={20} />
+                    <span className="text-base font-medium">My Account</span>
+                  </Link>
+                  <Link
+                    href="/cart"
+                    className="flex items-center space-x-3 text-black hover:text-accent transition-colors py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <ShoppingCart size={20} />
+                    <span className="text-base font-medium">Cart ({cartItemsCount})</span>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      signOut({ callbackUrl: '/' })
+                      setIsMenuOpen(false)
+                    }}
+                    className="flex items-center space-x-3 text-red-600 hover:text-red-700 transition-colors py-2 w-full"
+                  >
+                    <LogOut size={20} />
+                    <span className="text-base font-medium">Sign Out</span>
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/auth/signin"
+                  className="flex items-center space-x-3 text-black hover:text-accent transition-colors py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <User size={20} />
+                  <span className="text-base font-medium">Sign In</span>
+                </Link>
+              )}
             </div>
           </nav>
         </div>
