@@ -9,17 +9,20 @@ const cultureFeatures = [
   {
     icon: Shield,
     title: '100% AUTHENTIC',
-    description: 'Every product verified by our expert team. Guaranteed authentic or your money back.'
+    description: 'Every product verified by our expert team. Guaranteed authentic or your money back.',
+    image: '/logo.jpeg'
   },
   {
     icon: Truck,
     title: 'SAME-DAY DELIVERY',
-    description: 'Order before 2PM and get your drops delivered the same day in Nairobi.'
+    description: 'Order before 2PM and get your drops delivered the same day in Nairobi.',
+    image: '/IMG/latest/lux12.jpg'
   },
   {
     icon: Users,
     title: 'COMMUNITY FIRST',
-    description: 'Join 10,000+ sneakerheads celebrating Kenyan streetwear culture.'
+    description: 'Join 10,000+ sneakerheads celebrating Kenyan streetwear culture.',
+    image: '/IMG/latest/lux16.jpg'
   }
 ]
 
@@ -166,12 +169,26 @@ export function CultureSection() {
               {cultureFeatures.map((feature) => {
                 const IconComponent = feature.icon
                 return (
-                  <div key={feature.title} className="group p-6 bg-white border border-gray-100 rounded-lg hover:shadow-lg hover:border-accent transition-all duration-300">
-                    <div className="bg-gradient-to-br from-accent/10 to-red-500/10 p-4 rounded-lg w-fit mb-4 group-hover:from-accent group-hover:to-red-500 transition-all duration-300">
-                      <IconComponent size={24} className="text-accent group-hover:text-white transition-colors" />
+                  <div 
+                    key={feature.title} 
+                    className="group relative overflow-hidden rounded-lg aspect-[4/5] cursor-pointer"
+                  >
+                    {/* Background Image */}
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+                    {/* Content */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-6">
+                      <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full w-fit mb-4">
+                        <IconComponent size={24} className="text-white" />
+                      </div>
+                      <h3 className="font-bold text-lg mb-3 text-white">{feature.title}</h3>
+                      <p className="text-sm text-white/90 leading-relaxed">{feature.description}</p>
                     </div>
-                    <h3 className="font-bold text-base mb-3 group-hover:text-accent transition-colors">{feature.title}</h3>
-                    <p className="text-sm opacity-80 leading-relaxed group-hover:opacity-100 transition-opacity">{feature.description}</p>
                   </div>
                 )
               })}
@@ -188,7 +205,7 @@ export function CultureSection() {
           {/* Right Column - Image */}
           <div className="relative">
             <img
-              src="/IMG/Lux/lux11.jpg"
+              src="/logo.jpeg"
               alt="Sneaker Culture"
               className="w-full h-[500px] object-cover rounded-xl"
             />
