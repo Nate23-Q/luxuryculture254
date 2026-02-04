@@ -14,10 +14,15 @@ export interface Product {
   inStock: boolean
   isOnSale?: boolean
   isBestseller?: boolean
+  isBestSeller?: boolean
   isNewArrival?: boolean
   tags?: string[]
   createdAt?: string
   updatedAt?: string
+  features?: string[]
+  rating?: number
+  reviews?: number
+  sku?: string
 }
 
 export interface CartItem {
