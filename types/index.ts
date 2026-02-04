@@ -6,7 +6,7 @@ export interface Product {
   price: number
   originalPrice?: number
   brand: string
-  category: 'footwear' | 'apparel' | 'accessories'
+  category: 'sneakers' | 'boots' | 'lifestyle'
   gender: 'men' | 'women' | 'unisex'
   sizes: string[]
   colors: string[]

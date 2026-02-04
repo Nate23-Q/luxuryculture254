@@ -8,20 +8,20 @@ import { ArrowRight, Users, Award, Truck, Shield, MapPin, Star, ChevronLeft, Che
 const cultureFeatures = [
   {
     icon: Shield,
-    title: '100% AUTHENTIC',
-    description: 'Every product verified by our expert team. Guaranteed authentic or your money back.',
+    title: '100% AUTHENTIC SNEAKERS',
+    description: 'Every sneaker verified by our expert team. Guaranteed authentic or your money back.',
     image: '/logo.jpeg'
   },
   {
     icon: Truck,
     title: 'SAME-DAY DELIVERY',
-    description: 'Order before 2PM and get your drops delivered the same day in Nairobi.',
+    description: 'Order your kicks before 2PM and get them delivered the same day in Nairobi.',
     image: '/IMG/latest/lux12.jpg'
   },
   {
     icon: Users,
-    title: 'COMMUNITY FIRST',
-    description: 'Join 10,000+ sneakerheads celebrating Kenyan streetwear culture.',
+    title: 'SNEAKER COMMUNITY',
+    description: 'Join 10,000+ sneakerheads celebrating Kenyan sneaker culture.',
     image: '/IMG/latest/lux16.jpg'
   }
 ]
@@ -159,8 +159,8 @@ export function CultureSection() {
             </h2>
             
             <p className="text-lg lg:text-xl mb-8 opacity-90 max-w-lg leading-relaxed" style={{ lineHeight: '1.75' }}>
-              We're not just a store – we're a community of passionate individuals 
-              who celebrate sneaker culture, streetwear, and the stories behind every drop. 
+              We're not just a store – we're a community of passionate sneakerheads 
+              who celebrate sneaker culture and the stories behind every drop. 
               Join the movement.
             </p>
 
@@ -246,7 +246,7 @@ export function CultureSection() {
             </h2>
             <p className="text-lg lg:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
               Stay updated with the latest news, trends, and stories from the world 
-              of sneakers and streetwear.
+              of sneakers and footwear culture.
             </p>
           </div>
 

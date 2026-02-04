@@ -11,12 +11,6 @@ export function BrandShowcase() {
       )
     },
     { 
-      name: 'Adidas', 
-      logo: (
-        <div className="text-2xl font-bold">A</div>
-      )
-    },
-    { 
       name: 'Jordan', 
       logo: (
         <svg viewBox="0 0 24 24" className="w-8 h-8 fill-current">
@@ -25,33 +19,27 @@ export function BrandShowcase() {
       )
     },
     { 
-      name: 'Converse', 
+      name: 'Adidas', 
       logo: (
-        <div className="text-2xl font-bold">C</div>
+        <div className="text-2xl font-bold">A</div>
       )
     },
     { 
-      name: 'Vans', 
+      name: 'ASICS', 
       logo: (
-        <div className="text-2xl font-bold">V</div>
+        <div className="text-xl font-bold">ASICS</div>
       )
     },
     { 
-      name: 'New Balance', 
+      name: 'Timberland', 
       logo: (
-        <div className="text-2xl font-bold">N</div>
+        <div className="text-lg font-bold">T</div>
       )
     },
     { 
-      name: 'Puma', 
+      name: 'Nike SB', 
       logo: (
-        <div className="text-2xl font-bold">P</div>
-      )
-    },
-    { 
-      name: 'Reebok', 
-      logo: (
-        <div className="text-2xl font-bold">R</div>
+        <div className="text-lg font-bold">SB</div>
       )
     }
   ]

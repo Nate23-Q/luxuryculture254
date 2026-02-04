@@ -26,7 +26,7 @@ export function MoreThanStore() {
             <div className="absolute bottom-4 left-4">
               <h3 className="text-white font-bold text-lg">COMMUNITY</h3>
               <p className="text-white text-sm opacity-90">
-                Join our community of sneaker enthusiasts and culture
+                Join our community of sneaker enthusiasts and footwear culture
               </p>
             </div>
           </div>
@@ -46,7 +46,7 @@ export function MoreThanStore() {
             <div className="absolute bottom-4 left-4">
               <h3 className="text-white font-bold text-lg">COLLABORATION</h3>
               <p className="text-white text-sm opacity-90">
-                Working with brands and artists to bring unique culture
+                Working with sneaker brands to bring exclusive drops
               </p>
             </div>
           </div>
@@ -66,7 +66,7 @@ export function MoreThanStore() {
             <div className="absolute bottom-4 left-4">
               <h3 className="text-white font-bold text-lg">AUTHENTICITY</h3>
               <p className="text-white text-sm opacity-90">
-                100% authentic products. Real Kicks for real enthusiasts
+                100% authentic sneakers. Real kicks for real enthusiasts
               </p>
             </div>
           </div>
