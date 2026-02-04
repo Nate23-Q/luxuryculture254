@@ -51,7 +51,7 @@ export const allProducts: Product[] = [
 ]
 
 export const brands = ['Nike', 'Jordan', 'Adidas', 'ASICS', 'Timberland', 'Xuec']
-export const categories = ['sneakers', 'boots', 'lifestyle']
+export const categories = ['sneakers', 'boots', 'lifestyle', 'footwear']
 export const genders = ['men', 'women', 'unisex']
 export const sizes = ['38', '39', '40', '42', '42.5', '43', '44', '44.5', '45', '46']
 export const colors = ['Yellow', 'White/Red', 'Black/White', 'Multi-Color', 'Black', 'White/Black', 'White/Atmosphere', 'Bordeaux', 'White/Blue', 'White/Grey', 'Yellow/Sulphur', 'Stone/Grey', 'White/Gold', 'Pink', 'Green/Brown', 'Red', 'Grey/Green', 'Blue', 'Black/Pink', 'Ochre/Brown', 'White/Royal', 'Red/Olive', 'Carbon/Sesame', 'Red', 'Green/White', 'Red/Green']
