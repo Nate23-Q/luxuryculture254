@@ -11,7 +11,6 @@ export const lux2Products: Product[] = [
     category: 'sneakers' as const,
     gender: 'unisex',
     brand: 'Nike',
-    gender: 'unisex',
     sizes: ['42.5'],
     colors: ['Freshwater'],
     description: 'The iconic Nike Air Griffey Max 1 returns in the coveted Freshwater colorway. This legendary silhouette pays homage to baseball great Ken Griffey Jr. with premium materials and classic styling that transcends sports.',
