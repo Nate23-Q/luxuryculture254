@@ -16,7 +16,7 @@ import { allProducts } from '@/lib/data/all-products'
 import { lux2Products } from '@/lib/data/lux2-products'
 
 // Get products from actual data with fallback to show some products
-const newDrops = lux2Products.slice(0, 4) // Use Lux2 products for new drops
+const newDrops = lux2Products.filter(p => p.inStock).slice(0, 4) // Use only in-stock Lux2 products
 const bestsellers = allProducts.filter(p => p.isBestSeller).slice(0, 4) 
 const saleProducts = allProducts.filter(p => p.isOnSale).slice(0, 4)
 
