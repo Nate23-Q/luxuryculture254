@@ -1,4 +1,6 @@
-export const lux2Products = [
+import { Product } from '@/types'
+
+export const lux2Products: Product[] = [
   {
     id: 'lux2-001',
     name: 'Nike Air Griffey Max 1 Freshwater',
