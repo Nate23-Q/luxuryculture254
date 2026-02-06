@@ -37,23 +37,77 @@ export async function POST(request: NextRequest) {
         phone: phoneNumber
       })
 
-      // Try to find and update order by MerchantRequestID or CheckoutRequestID
-      // For now, we'll log the successful payment
-      // In production, you would store the MerchantRequestID when initiating STK Push
-      // and use it to find the corresponding order
+      // Find and update order by MerchantRequestID (stored as paymentReference)
+      try {
+        const updatedOrder = await Order.findOneAndUpdate(
+          { paymentReference: MerchantRequestID },
+          {
+            paymentStatus: 'completed',
+            orderStatus: 'confirmed',
+            mpesaReceiptNumber: receiptNumber,
+            $set: { updatedAt: new Date() }
+          },
+          { new: true }
+        )
 
-      return NextResponse.json({ 
-        ResultCode: 0, 
-        ResultDesc: 'Success',
-        data: {
-          amount,
-          receiptNumber,
-          phoneNumber
+        if (updatedOrder) {
+          console.log('✅ Order updated:', updatedOrder.orderNumber)
+          return NextResponse.json({ 
+            ResultCode: 0, 
+            ResultDesc: 'Success',
+            data: {
+              orderNumber: updatedOrder.orderNumber,
+              amount,
+              receiptNumber,
+              phoneNumber
+            }
+          })
+        } else {
+          // Order not found - log for manual review
+          console.warn('⚠️ Order not found for MerchantRequestID:', MerchantRequestID)
+          // Still return success to M-Pesa to prevent retry
+          return NextResponse.json({ 
+            ResultCode: 0, 
+            ResultDesc: 'Success',
+            data: {
+              amount,
+              receiptNumber,
+              phoneNumber,
+              warning: 'Order not found'
+            }
+          })
         }
-      })
+      } catch (dbError: any) {
+        console.error('Database error updating order:', dbError)
+        // Still return success to M-Pesa
+        return NextResponse.json({ 
+          ResultCode: 0, 
+          ResultDesc: 'Success',
+          data: {
+            amount,
+            receiptNumber,
+            phoneNumber,
+            dbError: dbError.message
+          }
+        })
+      }
 
     } else {
       console.log('❌ Payment Failed:', { ResultCode, ResultDesc })
+      
+      // Try to update order status to failed
+      try {
+        await Order.findOneAndUpdate(
+          { paymentReference: MerchantRequestID },
+          {
+            paymentStatus: 'failed',
+            orderStatus: 'cancelled'
+          }
+        )
+        console.log('Order marked as failed for MerchantRequestID:', MerchantRequestID)
+      } catch (dbError: any) {
+        console.error('Error updating failed order:', dbError)
+      }
       
       return NextResponse.json({ 
         ResultCode: 1, 
