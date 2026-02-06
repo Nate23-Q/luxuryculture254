@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react'
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, getTotalPrice } = useCartStore()
+  const { items, updateQuantity, removeItem, getTotalPrice, getTotalItems } = useCartStore()
   const [isLoading, setIsLoading] = useState(false)
 
   const handleQuantityChange = (id: string, size: string, newQuantity: number) => {
@@ -53,7 +53,7 @@ export default function CartPage() {
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <h1 className="heading-lg mb-2">Shopping Cart</h1>
-            <p className="text-body">{items.length} items in your cart</p>
+            <p className="text-body">{getTotalItems()} {getTotalItems() === 1 ? 'item' : 'items'} in your cart</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -61,10 +61,10 @@ export default function CartPage() {
             <div className="lg:col-span-2">
               <div className="space-y-6">
                 {items.map((item) => (
-                  <div key={`${item.id}-${item.size}`} className="card p-6">
-                    <div className="flex flex-col sm:flex-row gap-4">
+                  <div key={`${item.id}-${item.size}`} className="card p-4 sm:p-6">
+                    <div className="flex gap-4">
                       {/* Product Image */}
-                      <div className="w-full sm:w-24 h-24 flex-shrink-0">
+                      <div className="w-20 sm:w-24 h-20 sm:h-24 flex-shrink-0">
                         <img
                           src={item.image}
                           alt={item.name}
@@ -75,17 +75,17 @@ export default function CartPage() {
                       {/* Product Details */}
                       <div className="flex-1 min-w-0">
                         <div className="flex justify-between items-start mb-2">
-                          <div>
+                          <div className="flex-1 min-w-0 pr-2">
                             <h3 className="font-semibold text-secondary truncate">
                               {item.name}
                             </h3>
-                            <p className="text-sm text-secondary-600">
+                            <p className="text-xs sm:text-sm text-secondary-600">
                               {item.brand} • Size {item.size} • {item.color}
                             </p>
                           </div>
                           <button
                             onClick={() => handleRemoveItem(item.id, item.size)}
-                            className="p-1 text-secondary-400 hover:text-accent transition-colors"
+                            className="p-2 text-secondary-400 hover:text-accent transition-colors flex-shrink-0"
                             aria-label="Remove item"
                           >
                             <Trash2 size={18} />

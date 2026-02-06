@@ -66,18 +66,27 @@ export interface Address {
 
 export interface Order {
   id: string
-  userId: string
+  orderNumber: string
+  userId?: string
+  customer: {
+    email: string
+    firstName: string
+    lastName: string
+    phone: string
+    address: string
+    city: string
+    country: string
+  }
   items: OrderItem[]
   subtotal: number
   tax: number
   shipping: number
   total: number
-  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled'
-  paymentStatus: 'pending' | 'paid' | 'failed' | 'refunded'
-  paymentMethod: 'mpesa' | 'card' | 'paypal'
-  paymentDetails: any
-  shippingAddress: Address
-  billingAddress: Address
+  paymentMethod: 'mpesa' | 'card' | 'paypal' | 'paystack'
+  paymentStatus: 'pending' | 'processing' | 'completed' | 'failed'
+  orderStatus: 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled'
+  paymentReference?: string
+  mpesaReceiptNumber?: string
   trackingNumber?: string
   createdAt: string
   updatedAt: string

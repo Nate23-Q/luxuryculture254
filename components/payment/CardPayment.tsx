@@ -64,6 +64,31 @@ export function CardPayment({ total, orderInfo, onSuccess }: CardPaymentProps) {
     }))
   }
 
+  const luhnCheck = (cardNumber: string) => {
+    const digits = cardNumber.replace(/\s/g, '')
+    let sum = 0
+    let isEven = false
+    
+    for (let i = digits.length - 1; i >= 0; i--) {
+      let digit = parseInt(digits[i])
+      if (isEven) {
+        digit *= 2
+        if (digit > 9) digit -= 9
+      }
+      sum += digit
+      isEven = !isEven
+    }
+    return sum % 10 === 0
+  }
+
+  const getCardBrand = (cardNumber: string) => {
+    const digits = cardNumber.replace(/\s/g, '')
+    if (/^4/.test(digits)) return 'Visa'
+    if (/^5[1-5]/.test(digits)) return 'Mastercard'
+    if (/^3[47]/.test(digits)) return 'American Express'
+    return 'Unknown'
+  }
+
   const validateCardDetails = () => {
     const { cardNumber, expiryDate, cvc, cardholderName } = cardDetails
     
@@ -72,8 +97,14 @@ export function CardPayment({ total, orderInfo, onSuccess }: CardPaymentProps) {
       return false
     }
     
-    if (cardNumber.replace(/\s/g, '').length < 16) {
+    const cleanCardNumber = cardNumber.replace(/\s/g, '')
+    if (cleanCardNumber.length < 15 || cleanCardNumber.length > 16) {
       toast.error('Please enter a valid card number')
+      return false
+    }
+    
+    if (!luhnCheck(cleanCardNumber)) {
+      toast.error('Invalid card number')
       return false
     }
     
@@ -97,8 +128,10 @@ export function CardPayment({ total, orderInfo, onSuccess }: CardPaymentProps) {
       return false
     }
     
-    if (cvc.length < 3) {
-      toast.error('Please enter a valid CVC')
+    const cardBrand = getCardBrand(cleanCardNumber)
+    const expectedCvcLength = cardBrand === 'American Express' ? 4 : 3
+    if (cvc.length !== expectedCvcLength) {
+      toast.error(`Please enter a valid ${expectedCvcLength}-digit CVC`)
       return false
     }
     
@@ -113,16 +146,17 @@ export function CardPayment({ total, orderInfo, onSuccess }: CardPaymentProps) {
     setIsProcessing(true)
 
     try {
-      // Prepare payment data
+      const cleanCardNumber = cardDetails.cardNumber.replace(/\s/g, '')
       const paymentData = {
-        amount: Math.round(total * 100), // Stripe expects amount in cents
-        currency: 'KES', // Kenya Shillings
+        amount: Math.round(total * 100),
+        currency: 'KES',
         card: {
-          number: cardDetails.cardNumber.replace(/\s/g, ''),
+          number: cleanCardNumber,
           exp_month: parseInt(cardDetails.expiryDate.split('/')[0]),
           exp_year: parseInt('20' + cardDetails.expiryDate.split('/')[1]),
           cvc: cardDetails.cvc,
-          name: cardDetails.cardholderName
+          name: cardDetails.cardholderName,
+          brand: getCardBrand(cleanCardNumber)
         },
         billing_details: {
           name: cardDetails.cardholderName,
@@ -131,35 +165,27 @@ export function CardPayment({ total, orderInfo, onSuccess }: CardPaymentProps) {
           address: {
             line1: orderInfo.address,
             city: orderInfo.city,
-            country: 'KE' // Kenya
+            country: 'KE'
           }
         },
         orderInfo
       }
 
-      console.log('Processing card payment with data:', {
-        ...paymentData,
-        card: { ...paymentData.card, number: '**** **** **** ' + paymentData.card.number.slice(-4) }
+      const response = await fetch('/api/payment/stripe/charge', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(paymentData)
       })
-      
-      // In a real implementation, this would use Stripe Elements or similar:
-      // const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
-      // const {error, paymentIntent} = await stripe.confirmCardPayment(clientSecret, {
-      //   payment_method: {
-      //     card: cardElement,
-      //     billing_details: paymentData.billing_details
-      //   }
-      // })
 
-      // Simulate API call to payment processor
-      await new Promise(resolve => setTimeout(resolve, 3000))
-      
-      // Simulate successful payment
-      toast.success('Payment processed successfully!')
-      onSuccess()
-      
-      // Redirect to success page
-      window.location.href = '/order/success'
+      const result = await response.json()
+
+      if (result.success) {
+        toast.success('Payment processed successfully!')
+        onSuccess()
+        window.location.href = '/order/success'
+      } else {
+        toast.error(result.error || 'Payment failed. Please try again.')
+      }
 
     } catch (error) {
       console.error('Card payment error:', error)

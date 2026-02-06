@@ -366,8 +366,8 @@ export default function CheckoutPage() {
                   Our customer support team is here to help with your order.
                 </p>
                 <div className="space-y-2 text-sm">
-                  <p>📞 +254 700 000 000</p>
-                  <p>📧 support@shopjr.com</p>
+                  <p>📞 +254 787 507945</p>
+                  <p>📧 Luxuryculture254@gmail.com</p>
                   <p>🕒 Available 24/7</p>
                 </div>
               </div>

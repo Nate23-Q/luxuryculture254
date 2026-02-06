@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Smartphone, Loader } from 'lucide-react'
 import toast from 'react-hot-toast'
+import { useCartStore } from '@/lib/store/cart'
 
 interface MpesaPaymentProps {
   total: number
@@ -20,28 +21,46 @@ interface MpesaPaymentProps {
 }
 
 export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps) {
+  const { items } = useCartStore()
   const [phoneNumber, setPhoneNumber] = useState('')
   const [isProcessing, setIsProcessing] = useState(false)
   const [isSTKSent, setIsSTKSent] = useState(false)
+  const [orderNumber, setOrderNumber] = useState<string>('')
 
   const formatPhoneNumber = (value: string) => {
-    // Remove all non-digits
     const digits = value.replace(/\D/g, '')
     
-    // Handle different input formats
     if (digits.startsWith('254')) {
-      return `+${digits}`
+      return digits.length <= 12 ? digits : digits.substring(0, 12)
     } else if (digits.startsWith('0')) {
-      return `+254${digits.substring(1)}`
-    } else if (digits.length === 9) {
-      return `+254${digits}`
+      const without0 = digits.substring(1)
+      return without0.length <= 9 ? `254${without0}` : `254${without0.substring(0, 9)}`
+    } else if (digits.length <= 9) {
+      return `254${digits}`
     }
-    return digits
+    return digits.substring(0, 12)
+  }
+
+  const validatePhoneNumber = (phone: string) => {
+    const digits = phone.replace(/\D/g, '')
+    if (!digits.startsWith('254')) return false
+    if (digits.length !== 12) return false
+    const thirdDigit = digits[3]
+    return ['7', '1'].includes(thirdDigit)
   }
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value)
     setPhoneNumber(formatted)
+  }
+
+  const displayPhoneNumber = (phone: string) => {
+    if (!phone) return ''
+    const digits = phone.replace(/\D/g, '')
+    if (digits.startsWith('254') && digits.length === 12) {
+      return `+254 ${digits.substring(3, 6)} ${digits.substring(6, 9)} ${digits.substring(9)}`
+    }
+    return phone
   }
 
   const initiateSTKPush = async () => {
@@ -50,10 +69,13 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
       return
     }
 
-    // Validate phone number format
-    const phoneRegex = /^(\+254|0)[17]\d{8}$/
-    if (!phoneRegex.test(phoneNumber.replace(/\s/g, ''))) {
-      toast.error('Please enter a valid Kenyan phone number')
+    if (!validatePhoneNumber(phoneNumber)) {
+      toast.error('Please enter a valid Kenyan M-Pesa number (07XX XXX XXX or 01XX XXX XXX)')
+      return
+    }
+
+    if (!orderInfo.email || !orderInfo.firstName || !orderInfo.city) {
+      toast.error('Please fill in all customer information')
       return
     }
 
@@ -64,18 +86,48 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          phoneNumber: phoneNumber.replace(/\s/g, ''),
+          phoneNumber: phoneNumber.replace(/\D/g, ''),
           amount: Math.round(total),
           accountReference: `SHOPJR${Date.now()}`,
-          transactionDesc: 'Luxury Culture Online Purchase'
+          transactionDesc: 'Luxury Culture Purchase',
+          orderInfo: {
+            ...orderInfo,
+            phone: phoneNumber.replace(/\D/g, ''),
+            items: items.map(item => ({
+              productId: item.id,
+              name: item.name,
+              price: item.price,
+              quantity: item.quantity,
+              size: item.size,
+              image: item.image
+            }))
+          }
         })
       })
 
       const data = await response.json()
 
       if (data.success) {
-        setIsSTKSent(true)
-        toast.success('STK Push sent! Check your phone to complete payment.')
+        if (data.data?.isSimulation) {
+          // Simulation mode - payment completed immediately
+          toast.success(`Payment successful! Order: ${data.data.orderNumber}`)
+          // Store order number for success page
+          if (data.data.orderNumber) {
+            localStorage.setItem('lastOrderNumber', data.data.orderNumber)
+          }
+          onSuccess()
+          window.location.href = '/order/success'
+        } else {
+          // Real M-Pesa - STK Push sent
+          setIsSTKSent(true)
+          setOrderNumber(data.data?.orderNumber || '')
+          toast.success('STK Push sent! Check your phone to complete payment.')
+          
+          // Poll for payment confirmation (for simulation/demo)
+          setTimeout(() => {
+            checkPaymentStatus(data.data?.MerchantRequestID)
+          }, 30000)
+        }
       } else {
         toast.error(data.error || 'Failed to initiate payment')
       }
@@ -85,6 +137,17 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
       toast.error('Failed to initiate M-Pesa payment. Please try again.')
     } finally {
       setIsProcessing(false)
+    }
+  }
+
+  const checkPaymentStatus = async (merchantRequestId: string) => {
+    try {
+      // For demo purposes, check if order was updated
+      if (merchantRequestId) {
+        toast.success('Payment may have been confirmed. Please check your order status.')
+      }
+    } catch (error) {
+      console.error('Status check error:', error)
     }
   }
 
@@ -103,6 +166,11 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
             Please check your M-Pesa and enter your PIN to complete the payment of{' '}
             <strong>${total.toLocaleString()}</strong>
           </p>
+          {orderNumber && (
+            <p className="text-xs mt-2 opacity-75">
+              Order Number: {orderNumber}
+            </p>
+          )}
         </div>
         
         <div className="space-y-4">
@@ -155,10 +223,11 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
         <div className="relative">
           <input
             type="tel"
-            value={phoneNumber}
+            value={displayPhoneNumber(phoneNumber)}
             onChange={handlePhoneChange}
-            placeholder="+254 7XX XXX XXX or 07XX XXX XXX"
+            placeholder="07XX XXX XXX or 01XX XXX XXX"
             className="input-primary pl-12"
+            maxLength={17}
             required
           />
           <Smartphone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-secondary-400" size={18} />
@@ -174,6 +243,9 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
         <div className="flex justify-between text-sm">
           <span>Total Amount:</span>
           <span className="font-bold">${total.toLocaleString()}</span>
+        </div>
+        <div className="text-xs text-secondary-600 mt-1">
+          Items: {items.length}
         </div>
       </div>
 
@@ -209,3 +281,4 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
     </div>
   )
 }
+

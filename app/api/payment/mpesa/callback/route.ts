@@ -1,8 +1,12 @@
 // M-Pesa Callback API Route
 import { NextRequest, NextResponse } from 'next/server'
+import connectDB from '@/lib/db/connect'
+import Order from '@/models/Order'
 
 export async function POST(request: NextRequest) {
   try {
+    await connectDB()
+    
     const callbackData = await request.json()
     console.log('M-Pesa Callback:', JSON.stringify(callbackData, null, 2))
 
@@ -21,26 +25,45 @@ export async function POST(request: NextRequest) {
         return acc
       }, {})
 
-      console.log('Payment Success:', {
+      const amount = transactionDetails.Amount
+      const receiptNumber = transactionDetails.MpesaReceiptNumber
+      const phoneNumber = transactionDetails.PhoneNumber
+
+      console.log('✅ Payment Success:', {
         merchantRequest: MerchantRequestID,
-        amount: transactionDetails.Amount,
-        receipt: transactionDetails.MpesaReceiptNumber,
-        phone: transactionDetails.PhoneNumber
+        checkoutRequest: CheckoutRequestID,
+        amount,
+        receipt: receiptNumber,
+        phone: phoneNumber
       })
 
-      // TODO: Update order status in database
-      // TODO: Send confirmation email
-      // TODO: Trigger fulfillment
+      // Try to find and update order by MerchantRequestID or CheckoutRequestID
+      // For now, we'll log the successful payment
+      // In production, you would store the MerchantRequestID when initiating STK Push
+      // and use it to find the corresponding order
+
+      return NextResponse.json({ 
+        ResultCode: 0, 
+        ResultDesc: 'Success',
+        data: {
+          amount,
+          receiptNumber,
+          phoneNumber
+        }
+      })
 
     } else {
-      console.log('Payment Failed:', { ResultCode, ResultDesc })
-      // TODO: Update order status to failed
+      console.log('❌ Payment Failed:', { ResultCode, ResultDesc })
+      
+      return NextResponse.json({ 
+        ResultCode: 1, 
+        ResultDesc: ResultDesc || 'Payment failed' 
+      })
     }
 
-    return NextResponse.json({ ResultCode: 0, ResultDesc: 'Success' })
-
-  } catch (error) {
+  } catch (error: any) {
     console.error('Callback error:', error)
-    return NextResponse.json({ ResultCode: 1, ResultDesc: 'Error' })
+    return NextResponse.json({ ResultCode: 1, ResultDesc: 'Error processing callback' })
   }
 }
+
