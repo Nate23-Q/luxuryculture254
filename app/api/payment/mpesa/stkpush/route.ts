@@ -153,9 +153,30 @@ export async function POST(request: NextRequest) {
             orderStatus: 'cancelled'
           })
 
+          // Map M-Pesa error codes to user-friendly messages
+          const errorMap: { [key: string]: string } = {
+            '1': 'Invalid phone number. Please check and try again.',
+            '8': 'Insufficient M-Pesa balance. Please ensure you have enough money in your account.',
+            '9': 'M-Pesa account error. Please contact Safaricom support.',
+            '17': 'Transaction timeout. Please try again.',
+            '20': 'Invalid amount. Amount must be between KES 1 and KES 150,000.',
+            '26': 'Daily transaction limit exceeded. Please try again tomorrow or use another account.',
+            'INVALID_TRANSACTION_TYPE': 'Invalid transaction type. Please contact support.',
+            'INVALID_BUSINESS_SHORT_CODE': 'Payment configuration error. Please contact support.'
+          }
+
+          const errorCode = stkData.ResponseCode || stkData.errorCode || 'unknown'
+          const userFriendlyError = errorMap[errorCode] || 
+            stkData.errorMessage || 
+            stkData.ResponseDescription || 
+            'Payment initiation failed. Please try again or contact support.'
+
+          console.error('M-Pesa Error Details:', { errorCode, ...stkData })
+
           return NextResponse.json({
             success: false,
-            error: stkData.errorMessage || stkData.ResponseDescription || 'STK Push failed',
+            error: userFriendlyError,
+            errorCode: errorCode,
             data: stkData
           }, { status: 400 })
         }

@@ -129,12 +129,22 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
           }, 30000)
         }
       } else {
-        toast.error(data.error || 'Failed to initiate payment')
+        // Show specific error message from backend
+        const errorMessage = data.error || 'Failed to initiate payment. Please check your details and try again.'
+        toast.error(errorMessage, {
+          duration: 5000,
+          style: {
+            padding: '16px',
+            borderRadius: '8px',
+          }
+        })
       }
 
     } catch (error) {
       console.error('STK Push error:', error)
-      toast.error('Failed to initiate M-Pesa payment. Please try again.')
+      toast.error('Network error. Please check your connection and try again.', {
+        duration: 5000
+      })
     } finally {
       setIsProcessing(false)
     }
