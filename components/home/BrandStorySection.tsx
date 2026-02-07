@@ -131,7 +131,7 @@ export function BrandStorySection() {
             <ul className="space-y-3 text-gray-700 group-hover:text-white transition-colors">
               <li className="flex items-center space-x-2">
                 <span className="text-accent group-hover:text-white font-bold">✓</span>
-                <span>Kenyan Owned & Operated</span>
+                <span>Luxury Culture:</span>
               </li>
               <li className="flex items-center space-x-2">
                 <span className="text-accent group-hover:text-white font-bold">✓</span>
