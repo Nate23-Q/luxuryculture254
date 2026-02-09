@@ -1,6 +1,6 @@
 // M-Pesa STK Push API Route
 import { NextRequest, NextResponse } from 'next/server'
-import connectDB from '@/lib/db/connect'
+import connectDB, { isDatabaseSimulated } from '@/lib/db/connect'
 import Order from '@/models/Order'
 
 const MPESA_BASE_URL = process.env.MPESA_ENVIRONMENT === 'production' 
@@ -12,9 +12,37 @@ const MPESA_CONSUMER_SECRET = process.env.MPESA_CONSUMER_SECRET
 const USE_REAL_MPESA = MPESA_CONSUMER_KEY && MPESA_CONSUMER_SECRET && 
                        !MPESA_CONSUMER_KEY.includes('your_consumer_key')
 
+// Helper to safely interact with database
+async function safeCreateOrder(orderData: any): Promise<any | null> {
+  try {
+    return await Order.create(orderData)
+  } catch (error: any) {
+    console.warn('⚠️ Failed to create order in database:', error.message)
+    return null
+  }
+}
+
+async function safeUpdateOrder(orderId: string, updateData: any): Promise<boolean> {
+  try {
+    await Order.findByIdAndUpdate(orderId, updateData)
+    return true
+  } catch (error: any) {
+    console.warn('⚠️ Failed to update order in database:', error.message)
+    return false
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
-    await connectDB()
+    // Try to connect to database, but don't block payment if it fails
+    let dbConnected = false
+    try {
+      await connectDB()
+      dbConnected = true
+    } catch (dbError: any) {
+      console.warn('⚠️ Database connection failed, using simulation mode:', dbError.message)
+      dbConnected = false
+    }
     
     const { phoneNumber, amount, accountReference, transactionDesc, orderInfo } = await request.json()
 
@@ -52,8 +80,8 @@ export async function POST(request: NextRequest) {
     const taxAmount = (subtotal * taxRate) / (1 + taxRate)
     const totalAmount = Math.round(amount)
 
-    // Create pending order in database
-    const order = await Order.create({
+    // Create pending order in database (with fallback)
+    const orderData = {
       orderNumber,
       customer: {
         email: orderInfo?.email || `${cleanPhone}@mpesa.ke`,
@@ -69,13 +97,19 @@ export async function POST(request: NextRequest) {
       shipping,
       tax: taxAmount,
       total: totalAmount,
-      paymentMethod: 'mpesa',
-      paymentStatus: 'processing',
-      orderStatus: 'pending',
+      paymentMethod: 'mpesa' as const,
+      paymentStatus: 'processing' as const,
+      orderStatus: 'pending' as const,
       paymentReference: `STK-${Date.now()}`
-    })
+    }
 
-    console.log('✅ Order created:', order.orderNumber)
+    const order = await safeCreateOrder(orderData)
+    
+    if (order) {
+      console.log('✅ Order created:', order.orderNumber)
+    } else {
+      console.log('🧪 Order not stored (DB unavailable), continuing with simulation')
+    }
 
     // Real M-Pesa Integration
     if (USE_REAL_MPESA) {
@@ -129,29 +163,35 @@ export async function POST(request: NextRequest) {
         const stkData = await stkResponse.json()
 
         if (stkData.ResponseCode === '0') {
-          // Update order with M-Pesa reference
-          await Order.findByIdAndUpdate(order._id, {
-            paymentReference: stkData.MerchantRequestID
-          })
+          // Update order with M-Pesa reference (safe update)
+          if (order) {
+            await safeUpdateOrder(order._id.toString(), {
+              paymentReference: stkData.MerchantRequestID
+            })
+          }
 
           return NextResponse.json({
             success: true,
             data: {
-              orderNumber: order.orderNumber,
+              orderNumber: orderNumber,
               MerchantRequestID: stkData.MerchantRequestID,
               CheckoutRequestID: stkData.CheckoutRequestID,
               ResponseCode: stkData.ResponseCode,
               ResponseDescription: stkData.ResponseDescription,
-              CustomerMessage: stkData.CustomerMessage
+              CustomerMessage: stkData.CustomerMessage,
+              isSimulation: !dbConnected,
+              dbConnected: dbConnected
             },
             message: 'STK Push initiated. Check your phone to complete payment.'
           })
         } else {
-          // Update order status to failed
-          await Order.findByIdAndUpdate(order._id, {
-            paymentStatus: 'failed',
-            orderStatus: 'cancelled'
-          })
+          // Update order status to failed (safe update)
+          if (order) {
+            await safeUpdateOrder(order._id.toString(), {
+              paymentStatus: 'failed',
+              orderStatus: 'cancelled'
+            })
+          }
 
           // Map M-Pesa error codes to user-friendly messages
           const errorMap: { [key: string]: string } = {
@@ -183,11 +223,13 @@ export async function POST(request: NextRequest) {
       } catch (mpesaError: any) {
         console.error('M-Pesa API error:', mpesaError)
         
-        // Update order status
-        await Order.findByIdAndUpdate(order._id, {
-          paymentStatus: 'failed',
-          orderStatus: 'cancelled'
-        })
+        // Update order status (safe update)
+        if (order) {
+          await safeUpdateOrder(order._id.toString(), {
+            paymentStatus: 'failed',
+            orderStatus: 'cancelled'
+          })
+        }
 
         return NextResponse.json(
           {
@@ -199,10 +241,10 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Simulated M-Pesa (for testing without real credentials)
-    console.log('🧪 Using simulated M-Pesa (no real credentials)')
+    // Simulated M-Pesa (for testing without real credentials or when DB is down)
+    console.log('🧪 Using simulated M-Pesa' + (!dbConnected ? ' (DB unavailable - order not persisted)' : ''))
     
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    await new Promise(resolve => setTimeout(resolve, 1500))
 
     const simulatedResponse = {
       MerchantRequestID: `MR-${Date.now()}`,
@@ -212,30 +254,42 @@ export async function POST(request: NextRequest) {
       CustomerMessage: 'Success. Request accepted for processing'
     }
 
-    // Update order with simulated payment reference
-    await Order.findByIdAndUpdate(order._id, {
-      paymentReference: simulatedResponse.MerchantRequestID,
-      paymentStatus: 'completed',
-      orderStatus: 'confirmed',
-      mpesaReceiptNumber: `SIM${Date.now()}`
-    })
+    // Update order with simulated payment reference (safe update)
+    if (order) {
+      await safeUpdateOrder(order._id.toString(), {
+        paymentReference: simulatedResponse.MerchantRequestID,
+        paymentStatus: 'completed',
+        orderStatus: 'confirmed',
+        mpesaReceiptNumber: `SIM${Date.now()}`
+      })
+    }
 
     return NextResponse.json({
       success: true,
       data: {
-        orderNumber: order.orderNumber,
+        orderNumber: orderNumber,
         ...simulatedResponse,
-        isSimulation: true
+        isSimulation: true,
+        dbConnected: dbConnected,
+        dbWarning: !dbConnected ? 'Database unavailable - order not persisted. Please save your order number.' : null
       },
-      message: 'Payment successful (simulated). Order confirmed!'
+      message: dbConnected 
+        ? 'Payment successful (simulated). Order confirmed!' 
+        : 'Payment processed successfully! Note: Database was unavailable, please save your order number.'
     })
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('STK Push error:', error)
+    const devMessage = error?.message || String(error)
+    const errorMessage = process.env.NODE_ENV === 'production' 
+      ? 'Failed to initiate STK Push. Please try again.' 
+      : `Error: ${devMessage}`
+
     return NextResponse.json(
-      { 
+      {
         success: false,
-        error: 'Failed to initiate STK Push'
+        error: errorMessage,
+        debug: process.env.NODE_ENV !== 'production' ? devMessage : undefined
       },
       { status: 500 }
     )

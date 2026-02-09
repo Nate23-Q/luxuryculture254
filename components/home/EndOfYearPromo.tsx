@@ -38,7 +38,7 @@ export function EndOfYearPromo() {
           </div>
 
           <h1 className="text-5xl lg:text-7xl font-display font-black mb-4 leading-tight">
-            <span className="block text-yellow-300">NEW YEAR</span>
+            <span className="block text-yellow-300">VALENTINE</span>
             <span className="block">DISCOUNT PROMO SALE</span>
           </h1>
 

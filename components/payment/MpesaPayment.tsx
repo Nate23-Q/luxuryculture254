@@ -108,13 +108,22 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
       const data = await response.json()
 
       if (data.success) {
+        // Store order number for success page
+        if (data.data?.orderNumber) {
+          localStorage.setItem('lastOrderNumber', data.data.orderNumber)
+        }
+
+        // Check if database was unavailable
+        if (data.data?.dbWarning) {
+          toast(data.data.dbWarning, {
+            icon: '⚠️',
+            duration: 6000
+          })
+        }
+
         if (data.data?.isSimulation) {
           // Simulation mode - payment completed immediately
           toast.success(`Payment successful! Order: ${data.data.orderNumber}`)
-          // Store order number for success page
-          if (data.data.orderNumber) {
-            localStorage.setItem('lastOrderNumber', data.data.orderNumber)
-          }
           onSuccess()
           window.location.href = '/order/success'
         } else {
@@ -130,7 +139,13 @@ export function MpesaPayment({ total, orderInfo, onSuccess }: MpesaPaymentProps)
         }
       } else {
         // Show specific error message from backend
-        const errorMessage = data.error || 'Failed to initiate payment. Please check your details and try again.'
+        let errorMessage = data.error || 'Failed to initiate payment. Please check your details and try again.'
+        
+        // Add debugging info in development
+        if (process.env.NODE_ENV !== 'production' && data.debug) {
+          console.error('Payment error debug:', data.debug)
+        }
+        
         toast.error(errorMessage, {
           duration: 5000,
           style: {
